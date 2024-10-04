@@ -113,7 +113,7 @@ if (packageJson.dependencies) {
 
 fs.readFile(appStateFilePath, 'utf8', (err, data) => {
   if (err) {
-    console.error(`Lỗi đọc tệp ${appStateFilePath}: ${err}`);
+    console.error(`File read error ${appStateFilePath}: ${err}`);
     return;
   }
 
