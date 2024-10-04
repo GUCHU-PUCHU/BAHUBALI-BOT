@@ -14,16 +14,16 @@ module.exports = function({ api, models }) {
 	const fs = require("fs");
 	const moment = require('moment-timezone');
 	const axios = require("axios");
-  var day = moment.tz("Asia/Ho_Chi_Minh").day();
+  var day = moment.tz("Asia/Kolkata").day();
   
   
   const checkttDataPath = __dirname + '/../modules/commands/-checktt/';
   setInterval(async() => {
-    const day_now = moment.tz("Asia/Ho_Chi_Minh").day();
+    const day_now = moment.tz("Asia/Kolkata").day();
     if (day != day_now) {
       day = day_now;
       const checkttData = fs.readdirSync(checkttDataPath);
-      console.log('--> CHECKTT: Ngày Mới');
+      console.log('--> CHECKTT: New Day');
       checkttData.forEach(async(checkttFile) => {
         const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
         let storage = [], count = 1;
@@ -43,7 +43,7 @@ module.exports = function({ api, models }) {
                 return a.name.localeCompare(b.name);
             }
         });
-        let checkttBody = '📆══『𝐓𝐎𝐏 𝟏𝟎 𝐓𝐔̛𝐎̛𝐍𝐆 𝐓𝐀́𝐂 𝐍𝐆𝐀̀𝐘』══📆\n━━━━━━━━━━━━━━━━━\n→ 𝗧𝗵𝗼̂𝗻𝗴 𝗯𝗮́𝗼 𝘃𝗮̀𝗼 𝗹𝘂́𝗰 𝟬:𝟬𝟬:𝟬𝟬 𝗔𝗠 𝗵𝗮̆̀𝗻𝗴 𝗻𝗴𝗮̀𝘆\n━━━━━━━━━━━━━━━━━\n\n';
+        let checkttBody = '📆══『𝐓𝐎𝐏 𝟏𝟎 𝐃𝐀𝐈𝐋𝐘 𝐈𝐍𝐓𝐄𝐑𝐀𝐂𝐓𝐈𝐎𝐍𝐒』══📆\n━━━━━━━━━━━━━━━━━\n→ Notification at 00:00:00 AM daily\n━━━━━━━━━━━━━━━━━\n\n';
         checkttBody += storage.slice(0, 10).map(item => {
           return `${count++}. ${item.name} (${item.count})`;
       }).join('\n');
@@ -57,7 +57,7 @@ module.exports = function({ api, models }) {
         fs.writeFileSync(checkttDataPath + checkttFile, JSON.stringify(checktt, null, 4));
       });
       if (day_now == 1) {
-        console.log('--> CHECKTT: Tuần Mới');
+        console.log('--> CHECKTT: New Week');
         checkttData.forEach(async(checkttFile) => {
           const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
           let storage = [], count = 1;
@@ -77,9 +77,9 @@ module.exports = function({ api, models }) {
                   return a.name.localeCompare(b.name);
               }
           });
-          let checkttBody = '📆══『𝐓𝐎𝐏 𝟐𝟎 𝐓𝐔̛𝐎̛𝐍𝐆 𝐓𝐀́𝐂 𝐓𝐔𝐀̂̀𝐍』══📆\n━━━━━━━━━━━━━━━━━\n→ 𝗧𝗵𝗼̂𝗻𝗴 𝗯𝗮́𝗼 𝘃𝗮̀𝗼 𝗹𝘂́𝗰 𝟬:𝟬𝟬:𝟬𝟬 𝗔𝗠 𝗵𝗮̆̀𝗻𝗴 𝐭𝐮𝐚̂̀𝐧\n━━━━━━━━━━━━━━━━━\n\n';
+          let checkttBody = '📆══『𝐓𝐎𝐏 𝟐𝟎 𝐖𝐄𝐄𝐊𝐋𝐘 𝐈𝐍𝐓𝐄𝐑𝐀𝐂𝐓𝐈𝐎𝐍𝐒』══📆\n━━━━━━━━━━━━━━━━━\n→ Notification at 00:00:00 AM weekly\n━━━━━━━━━━━━━━━━━\n\n';
           checkttBody += storage.slice(0, 20).map(item => {
-            return `${count++}.${item.name}\n→ Tổng số tin nhắn: ${item.count})`;
+            return `${count++}.${item.name}\n→ Total messages: ${item.count})`;
         }).join('\n');
           api.sendMessage(checkttBody, checkttFile.replace('.json', ''), (err) => err ? console.log(err) : '');
           checktt.week.forEach(e => {
@@ -138,7 +138,7 @@ module.exports = function({ api, models }) {
         return logger.loader(global.getText('listen', 'failLoadEnvironment', error), 'error');
     }
 }());
-	logger(`${api.getCurrentUserID()} - 『 ${global.config.PREFIX} 』 • ${(!global.config.BOTNAME) ? "This bot was made by CatalizCS and SpermLord" : global.config.BOTNAME}`, "『 BOT INFO 』");
+	logger(`${api.getCurrentUserID()} - 『 ${global.config.PREFIX} 』 • ${(!global.config.BOTNAME) ? "This bot was made by Smart Shankar" : global.config.BOTNAME}`, "『 BOT INFO 』");
   /*api.sendMessage(`
   [</>] • Bot đã được khởi chạy thành công ✅,
   [</>] • Prefix hiện tại là: ${global.config.PREFIX},
@@ -160,9 +160,9 @@ module.exports = function({ api, models }) {
   const handleRefresh = require("./handle/handleRefresh")({ api, models, Users, Threads, Currencies });
 	const handleCreateDatabase = require("./handle/handleCreateDatabase")({  api, Threads, Users, Currencies, models });
   api.sendMessage(`
-[</>] • Khởi chạy bot thành công ✅,
-[</>] • Prefix hiện tại là: ${global.config.PREFIX},
-[</>] • Tên bot: ${global.config.BOTNAME},
+[</>] • Bot launched successfully ✅,
+[</>] • The current prefix is: ${global.config.PREFIX},
+[</>] • Bot name: ${global.config.BOTNAME},
 [</>] • Uid bot: ${api.getCurrentUserID()},
 [</>] • Uid admin: ${global.config.ADMC[0]},  `, global.config.ADMC[0]);
 	logger.loader(`====== ${Date.now() - global.client.timeStart}ms ======`);
@@ -180,24 +180,24 @@ module.exports = function({ api, models }) {
 	  try { thuebot = JSON.parse(require('fs').readFileSync(process.cwd()+'/modules/commands/data/thuebot.json')); } catch { thuebot = []; };
 	  let find_thuebot = thuebot.find($=>$.t_id == event.threadID);
 	  
-	  if (!find_thuebot)return send(`❗️:Nhóm của bạn chưa thuê bot!
-⚠️: Vui lòng liên hệ người điều hành để thuê bot!
-☎️: Người điều hành,Khởi chạy bot: Nguyễn Đức Tài
-📞: Zalo: zalo.me/user_ndtai_06
-🪪: Facebook: https://www.facebook.com/Ng.dtai2006
+	  if (!find_thuebot)return send(`❗️:Your group has not rented the bot!
+⚠️: Please contact the operator to rent the bot!
+☎️: Operator, Bot launched: Smart Shankar
+📞: WhatsApp: https://wa.me/qr/YYB6P42PZENOC1
+🪪: Facebook: https://www.facebook.com/shankar.suman.98622733
 `);
-	  if (new Date(form_mm_dd_yyyy(find_thuebot.time_end)).getTime() <= Date.now()+25200000)return send(`⚠️ Nhóm của bạn đã hết hạn thuê bot
-❗️: Vui lòng thanh toán để tiếp tục gia hạn.
-☎️: Liên hệ Admin: Nguyễn Đức Tài
-📞: Zalo: zalo.me/user_ndtai_06
-🪪: Facebook: https://www.facebook.com/Ng.dtai2006`);
+	  if (new Date(form_mm_dd_yyyy(find_thuebot.time_end)).getTime() <= Date.now()+25200000)return send(`⚠️ Your group has expired the bot rental.
+❗️: Please make a payment to continue the renewal.
+☎️: Contact Admin: Smart Shankar
+📞: WhatsApp: https://wa.me/qr/YYB6P42PZENOC1
+🪪: Facebook: https://www.facebook.com/shankar.suman.98622733`);
 	  };
     let data = JSON.parse(fs.readFileSync(__dirname + "/../modules/commands/bot/approvedThreads.json"));
     let adminBot = global.config.ADMINBOT
     if (!data.includes(event.threadID) && !adminBot.includes(event.senderID)) {
 /////////////getPrefix/////////////////
 const moment = require("moment-timezone");
-var gio = moment.tz('Asia/Ho_Chi_Minh').format('HH:mm:ss || D/MM/YYYY');
+var gio = moment.tz('Asia/Kolkata').format('HH:mm:ss || D/MM/YYYY');
       const threadSetting = global.data.threadData.get(parseInt(event.threadID)) || {};
       const prefix = (threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : global.config.PREFIX;
 
@@ -205,10 +205,10 @@ var gio = moment.tz('Asia/Ho_Chi_Minh').format('HH:mm:ss || D/MM/YYYY');
     switch (event.type) {
       case "change_thread_image": 
         		if(global.config.notiGroup) {
-					var msg = '» [ CẬP NHẬT NHÓM ]\n'
+					var msg = '» [ UPDATE GROUP ]\n'
 					msg += event.snippet
 					if(event.author == api.getCurrentUserID()) {
-						msg = msg.replace('Bạn', global.config.BOTNAME)
+						msg = msg.replace('You', global.config.BOTNAME)
 					}
 					api.sendMessage(msg,event.threadID);
 				}
@@ -228,10 +228,10 @@ var gio = moment.tz('Asia/Ho_Chi_Minh').format('HH:mm:ss || D/MM/YYYY');
 				handleEvent({ event });
 				handleRefresh({ event });
 				if(global.config.notiGroup) {
-					var msg = '» [ CẬP NHẬT NHÓM ]\n'
+					var msg = '» [ UPDATE GROUP ]\n'
 					msg += event.logMessageBody
 					if(event.author == api.getCurrentUserID()) {
-						msg = msg.replace('Bạn', global.config.BOTNAME)
+						msg = msg.replace('You', global.config.BOTNAME)
 					}
 					api.sendMessage(msg, event.threadID);
 				}
@@ -239,7 +239,7 @@ var gio = moment.tz('Asia/Ho_Chi_Minh').format('HH:mm:ss || D/MM/YYYY');
 			//<--Nhận cảm xúc-->//
 			case "message_reaction":
 				var { iconUnsend } = global.config
-				if(iconUnsend.status && event.senderID == api.getCurrentUserID() && event.reaction == iconUnsend.icon) {
+				if(iconUnsend.status && event.senderID == api.getCurrentUserID() && event.reaction == '👍') {
 					api.unsendMessage(event.messageID)
 				}
 				handleReaction({ event });
