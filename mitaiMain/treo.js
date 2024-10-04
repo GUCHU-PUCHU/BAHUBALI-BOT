@@ -18,6 +18,6 @@ function ductaiUptime(url) {
         });
 }
 
-console.log(chalk.bold.hex("00FF00")(`[ SERVER - LOADING ] Khởi động thành công Server`));
+console.log(chalk.bold.hex("00FF00")(`[ SERVER - LOADING ] Server started successfully`));
 
 ductaiUptime(url);
