@@ -1,1 +1,680 @@
-'use strict';var _0x2d6b20=_0x41ef;(function(_0x54b7b2,_0x4ac57b){var _0x2408e3=_0x41ef,_0x1dadce=_0x54b7b2();while(!![]){try{var _0x122d65=-parseInt(_0x2408e3(0x136))/0x1*(parseInt(_0x2408e3(0x1d4))/0x2)+-parseInt(_0x2408e3(0x187))/0x3+-parseInt(_0x2408e3(0x14a))/0x4+-parseInt(_0x2408e3(0x15e))/0x5+parseInt(_0x2408e3(0x197))/0x6+-parseInt(_0x2408e3(0x12c))/0x7*(parseInt(_0x2408e3(0x23a))/0x8)+-parseInt(_0x2408e3(0x16c))/0x9*(-parseInt(_0x2408e3(0x212))/0xa);if(_0x122d65===_0x4ac57b)break;else _0x1dadce['push'](_0x1dadce['shift']());}catch(_0x45485e){_0x1dadce['push'](_0x1dadce['shift']());}}}(_0x5672,0x89448));function _0x5672(){var _0x578058=['magic_words','messageReply','/onevc','type','destroy','message','OPEN','The\x20number\x20of\x20minutes\x20to\x20automatically\x20restart\x20must\x20be\x20more\x20than\x2010\x20minutes','_write','/browser_close','finally','globalOptions','exit','url','OnStatus','/orca_typing_notifications','fbid','autoMarkDelivery','Index','getType','readFileSync','listenMqtt','updatePresence','/messenger_sync_create_queue','INBOX','&sid=','deletionTimestamp','/rtc_multi','message_id','threadFbId','SIGINT','threadKey','Closing\x20MQTT\x20Client...','Error','ForcedFetch','__typename','is_playable','deltaMessageReaction','stop_listen','timestamp','pid','error','legacy_attachment_id','Client','title_with_entities','media','unknown','concat','getSeqId:\x20no\x20sync_sequence_id\x20found.','jar','chunk','substr','26490310sPFCUx','senderId','online','lastIssuedSeqId','tmsWait','socket','publish','ParticipantsAddedToGroupThread','message_reply','actorFbId','parseAndCheckLogin','timestamp_precise','replyToMessageId','message_live_location','thread','trim','ClientPayload','properties','formatDeltaEvent','/orca_presence','\x20Minutes','successful_results','author','npmlog','https://www.facebook.com','playable_duration_in_ms','/legacy_web','UserLocation','readyState','wss://edge-chat.facebook.com/chat?region=','MAX_SAFE_INTEGER','MQIsdp','error_results','resolvePhotoUrl','Invalid\x20auto-restart\x20minutes!','mqttwsclient','attach_type','/br_sr','Mozilla/5.0\x20(Windows\x20NT\x2010.0;\x20Win64;\x20x64)\x20AppleWebKit/537.36\x20(KHTML,\x20like\x20Gecko)\x20Chrome/101.0.4951.64\x20Safari/537.36','onmessage','344zENkht','list','extensible_attachment','3336396659757871','deltaRecallMessageData','selfListen','deltas','group_poll','messageCount','ranges','warn','image_with_metadata','AdminTextMessage','blob_attachment','49182fIwLUd','pin_messages_v2','existsSync','Language','isGroup','OnRestart','AutoLogin','wsOptions','arraybuffer','join','10029XRTasK','https://www.facebook.com/api/graphqlbatch/','message_unsend','emit','push','toLocaleLowerCase','/webrtc','device_params','info','photo','data','Server\x20Đã\x20Sập\x20-\x20Auto\x20Restart','assign','decodeClientPayload','/webrtc_response','mercuryJSON','sync_sequence_id','../CountTime.json','snippet','/inbox','3850816tcBrTH','mercury','catch','class','mqttClient','binary','post','height','getSeqId','agent','/pp','string','Normal','payload','setReadable','wss://edge-chat.facebook.com/chat?sid=','lastSeqId','log','subattachments','_writev','4457745hgsUuW','Lỗi\x20Nhẹ','pageID','state','listenEvents','../broadcast','end','/ls_req','forcedFetch','/t_ms','Warning','from','entity','messageID','9xVKhLU','toString','messageMetadata','source','hostname','stringify','mqtt','participant_joined_group_call','_formatAttachment','loggedIn','sender_fbid','/ls_resp','prng','change_thread_admins','otherUserFbId','Fca','substring','ready','AutoRestartMinutes','setWritable','uri','ReadReceipt','length','logger','t_mqttCalled','text','Auto\x20Restart\x20MQTT\x20Client\x20After:\x20','417798gyPTja','ThreadImageMessage','/mercury','viewer','then','StopListening','websocket','deltaMessageReply','map','message_sender','change_thread_theme','_flush','markAsDelivered','message_threads','getSeqId:\x20there\x20was\x20no\x20successful_results','formatDeltaMessage','4863564HeWPAm','Require','metadata','path','queue','Setup','userID','delta','ParticipantLeftGroupThread','../utils','share','Array','split','story_attachment','errors','description','attachments','onopen','unsubscribe','ff-Return','repliedToMessage','includes','image','change_thread_icon','markAsRead','mqttEndpoint','connect','firstDeltaSeqId','ThreadName','joinable_group_link_mode_change','change_thread_image','AutoRestart','FastConfig','ErrAppState','env','duplexify','presence','userAgent','forEach','senderID','../Extra/ExtraGetThread','NewMessage','parse','messageId','writeFileSync','autoMarkRead','219994525426954','Object','floor','close','offset','change_thread_nickname','initial_titan_sequence_id','body','getCookies','syncToken','undefined','utf8','region','JSON','send','120DZOrZb','firstListen','RestartMQTT_Minutes','readable-stream','threadID','Transform','autoReconnect','Data','formatID','reaction'];_0x5672=function(){return _0x578058;};return _0x5672();}const utils=require(_0x2d6b20(0x1a0)),log=require(_0x2d6b20(0x229)),mqtt=require(_0x2d6b20(0x172)),Websocket=require('ws'),HttpsProxyAgent=require('https-proxy-agent'),EventEmitter=require('events'),Duplexify=require(_0x2d6b20(0x1ba)),Transform=require(_0x2d6b20(0x1d7))[_0x2d6b20(0x1d9)];function _0x41ef(_0x228dfc,_0x337106){var _0x5672e0=_0x5672();return _0x41ef=function(_0x41efc7,_0x43f523){_0x41efc7=_0x41efc7-0x127;var _0x428ebb=_0x5672e0[_0x41efc7];return _0x428ebb;},_0x41ef(_0x228dfc,_0x337106);}var identity=function(){},form={},getSeqID=function(){},topics=[_0x2d6b20(0x165),_0x2d6b20(0x177),_0x2d6b20(0x22c),_0x2d6b20(0x13c),_0x2d6b20(0x1f9),_0x2d6b20(0x1e0),_0x2d6b20(0x237),'/sr_res',_0x2d6b20(0x167),'/thread_typing','/orca_typing_notifications','/notify_disconnect',_0x2d6b20(0x225),_0x2d6b20(0x149),_0x2d6b20(0x189),'/messaging_events','/orca_message_notifications',_0x2d6b20(0x154),_0x2d6b20(0x144)],WebSocket_Global;function buildProxy(){var _0x3a9637=_0x2d6b20,_0xf665a1=new Transform({'objectMode':![]});return _0xf665a1[_0x3a9637(0x1e6)]=function _0x3a396e(_0x50b32c,_0x19c33f,_0x28de75){var _0x2cdbc5=_0x3a9637;if(WebSocket_Global[_0x2cdbc5(0x22e)]!==WebSocket_Global[_0x2cdbc5(0x1e4)])return _0x28de75();typeof _0x50b32c===_0x2cdbc5(0x155)&&(_0x50b32c=new Buffer[(_0x2cdbc5(0x169))](_0x50b32c,'utf8')),WebSocket_Global[_0x2cdbc5(0x1d3)](_0x50b32c,_0x28de75);},_0xf665a1[_0x3a9637(0x192)]=function(_0x33b289){var _0x129822=_0x3a9637;WebSocket_Global[_0x129822(0x1c8)](),_0x33b289();},_0xf665a1[_0x3a9637(0x15d)]=function(_0x4992bc,_0x555b84){var _0x5a9cb9=_0x3a9637,_0x1ab9d2=new Array(_0x4992bc[_0x5a9cb9(0x182)]);for(var _0x18c6ca=0x0;_0x18c6ca<_0x4992bc[_0x5a9cb9(0x182)];_0x18c6ca++){typeof _0x4992bc[_0x18c6ca]['chunk']===_0x5a9cb9(0x155)?_0x1ab9d2[_0x18c6ca]=new Buffer[(_0x5a9cb9(0x169))](_0x4992bc[_0x18c6ca],_0x5a9cb9(0x1d0)):_0x1ab9d2[_0x18c6ca]=_0x4992bc[_0x18c6ca][_0x5a9cb9(0x210)];}this[_0x5a9cb9(0x1e6)](new Buffer[(_0x5a9cb9(0x20d))](_0x1ab9d2),_0x5a9cb9(0x14f),_0x555b84);},_0xf665a1;}function buildStream(_0x1b8891,_0x3ce533,_0x5aee46){var _0x1d7589=_0x2d6b20;const _0x4082a3=Duplexify(undefined,undefined,_0x1b8891);return _0x4082a3[_0x1d7589(0x217)]=_0x3ce533,_0x3ce533['onclose']=function(){var _0x165521=_0x1d7589;_0x4082a3[_0x165521(0x164)](),_0x4082a3['destroy']();},_0x3ce533['onerror']=function(_0x4f3e26){var _0x72c806=_0x1d7589;_0x4082a3[_0x72c806(0x1e2)](_0x4f3e26);},_0x3ce533[_0x1d7589(0x239)]=function(_0x58d8e4){var _0x160ab1=_0x1d7589,_0x203b7b=_0x58d8e4[_0x160ab1(0x140)];if(_0x203b7b instanceof ArrayBuffer)_0x203b7b=new Buffer['from'](_0x203b7b);else _0x203b7b=new Buffer['from'](_0x203b7b,_0x160ab1(0x1d0));_0x4082a3[_0x160ab1(0x13a)](_0x203b7b);},_0x3ce533[_0x1d7589(0x1a8)]=function(){var _0x43acd5=_0x1d7589;_0x4082a3[_0x43acd5(0x158)](_0x5aee46),_0x4082a3[_0x43acd5(0x17f)](_0x5aee46),_0x4082a3[_0x43acd5(0x139)]('connect');},WebSocket_Global=_0x3ce533,_0x5aee46['on'](_0x1d7589(0x1c8),function(){var _0xef81f0=_0x1d7589;_0x3ce533[_0xef81f0(0x1c8)]();}),_0x4082a3;}function listenMqtt(_0x21bd48,_0x211bc5,_0x1ebca1,_0x3ce521){var _0x1287af=_0x2d6b20,_0x226776=_0x1ebca1[_0x1287af(0x1e9)][_0x1287af(0x214)],_0x4891bf=![],_0xff2764=Math[_0x1287af(0x1c7)](Math['random']()*Number[_0x1287af(0x230)]+0x1),_0x17e81a={'u':_0x1ebca1[_0x1287af(0x19d)],'s':_0xff2764,'chat_on':_0x226776,'fg':_0x4891bf,'d':utils['getGUID'](),'ct':_0x1287af(0x18d),'aid':_0x1287af(0x1c5),'mqtt_sid':'','cp':0x3,'ecp':0xa,'st':[],'pm':[],'dc':'','no_auto_fg':!![],'gas':null,'pack':[]},_0x55bac5=_0x1ebca1[_0x1287af(0x20f)][_0x1287af(0x1cd)](_0x1287af(0x22a))[_0x1287af(0x135)](';\x20'),_0x4f48e7;if(_0x1ebca1[_0x1287af(0x1b0)])_0x4f48e7=_0x1ebca1[_0x1287af(0x1b0)]+'&sid='+_0xff2764;else{if(_0x1ebca1['region'])_0x4f48e7=_0x1287af(0x22f)+_0x1ebca1[_0x1287af(0x1d1)][_0x1287af(0x13b)]()+_0x1287af(0x1f7)+_0xff2764;else _0x4f48e7=_0x1287af(0x159)+_0xff2764;}var _0x5adfc8={'clientId':_0x1287af(0x235),'protocolId':_0x1287af(0x231),'protocolVersion':0x3,'username':JSON[_0x1287af(0x171)](_0x17e81a),'clean':!![],'wsOptions':{'headers':{'Cookie':_0x55bac5,'Origin':_0x1287af(0x22a),'User-Agent':_0x1ebca1[_0x1287af(0x1e9)][_0x1287af(0x1bc)]||_0x1287af(0x238),'Referer':'https://www.facebook.com/','Host':new URL(_0x4f48e7)[_0x1287af(0x170)]},'origin':_0x1287af(0x22a),'protocolVersion':0xd,'binaryType':_0x1287af(0x134)},'keepalive':0x3c,'reschedulePings':!![],'reconnectPeriod':0x3};if(typeof _0x1ebca1[_0x1287af(0x1e9)]['proxy']!=_0x1287af(0x1cf)){var _0x10165a=new HttpsProxyAgent(_0x1ebca1['globalOptions']['proxy']);_0x5adfc8[_0x1287af(0x133)][_0x1287af(0x153)]=_0x10165a;}_0x1ebca1[_0x1287af(0x14e)]=new mqtt[(_0x1287af(0x209))](_0x27b09a=>buildStream(_0x5adfc8,new Websocket(_0x4f48e7,_0x5adfc8[_0x1287af(0x133)]),buildProxy()),_0x5adfc8),global[_0x1287af(0x14e)]=_0x1ebca1[_0x1287af(0x14e)],global[_0x1287af(0x14e)]['on'](_0x1287af(0x207),function(_0x5c97c1){var _0x10f262=_0x1287af;log[_0x10f262(0x207)](_0x10f262(0x1f3),_0x5c97c1),global[_0x10f262(0x14e)][_0x10f262(0x164)]();if(_0x1ebca1[_0x10f262(0x1e9)][_0x10f262(0x1da)])getSeqID();else return _0x3ce521({'type':_0x10f262(0x204),'error':_0x10f262(0x141)},null),process[_0x10f262(0x1ea)](0x1);}),global[_0x1287af(0x14e)]['on'](_0x1287af(0x1b1),function(){var _0x2e03d5=_0x1287af;(!global[_0x2e03d5(0x17b)][_0x2e03d5(0x1db)][_0x2e03d5(0x19c)]||global['Fca'][_0x2e03d5(0x1db)]['Setup']==undefined)&&(global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)]['RestartMQTT_Minutes']!=0x0&&global[_0x2e03d5(0x17b)]['Data'][_0x2e03d5(0x18c)]!=!![]&&(global[_0x2e03d5(0x17b)][_0x2e03d5(0x1db)][_0x2e03d5(0x19c)]=!![],setTimeout(()=>{var _0x48913a=_0x2e03d5;global[_0x48913a(0x17b)][_0x48913a(0x198)][_0x48913a(0x183)][_0x48913a(0x168)](_0x48913a(0x1fe)),_0x1ebca1['mqttClient'][_0x48913a(0x164)](),global['Fca'][_0x48913a(0x198)][_0x48913a(0x183)][_0x48913a(0x168)]('Reconnecting\x20MQTT\x20Client...'),global[_0x48913a(0x17b)][_0x48913a(0x1db)][_0x48913a(0x19c)]=![],getSeqID();},Number(global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)][_0x2e03d5(0x1d6)])*0x3c*0x3e8)));if(process[_0x2e03d5(0x1b9)]['OnStatus']==undefined){global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x183)]['Normal']('shankar-project');if(Number(global[_0x2e03d5(0x17b)]['Require'][_0x2e03d5(0x1b7)]['AutoRestartMinutes'])==0x0){}else{if(Number(global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)]['AutoRestartMinutes']<0xa))log[_0x2e03d5(0x128)]('AutoRestartMinutes',_0x2e03d5(0x1e5));else Number(global[_0x2e03d5(0x17b)]['Require'][_0x2e03d5(0x1b7)][_0x2e03d5(0x17e)])<0x0?log[_0x2e03d5(0x128)](_0x2e03d5(0x17e),_0x2e03d5(0x234)):(global['Fca'][_0x2e03d5(0x198)][_0x2e03d5(0x183)]['Normal'](global[_0x2e03d5(0x17b)]['getText'](global['Fca'][_0x2e03d5(0x198)][_0x2e03d5(0x12f)]['Src'][_0x2e03d5(0x1b6)],global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)]['AutoRestartMinutes'])),global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)]['logger'][_0x2e03d5(0x156)](_0x2e03d5(0x186)+global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)][_0x2e03d5(0x1d6)]+_0x2e03d5(0x226)),setInterval(()=>{var _0x1655a7=_0x2e03d5;global['Fca'][_0x1655a7(0x198)]['logger'][_0x1655a7(0x156)](global[_0x1655a7(0x17b)][_0x1655a7(0x198)]['Language']['Src'][_0x1655a7(0x131)]),process['exit'](0x1);},Number(global[_0x2e03d5(0x17b)][_0x2e03d5(0x198)][_0x2e03d5(0x1b7)][_0x2e03d5(0x17e)])*0xea60));}require(_0x2e03d5(0x163)),process[_0x2e03d5(0x1b9)][_0x2e03d5(0x1ec)]=!![];}topics[_0x2e03d5(0x1bd)](_0x20ebf5=>global[_0x2e03d5(0x14e)]['subscribe'](_0x20ebf5));var _0x2a3951,_0x970101={'sync_api_version':0xb,'max_deltas_able_to_process':0x64,'delta_batch_size':0x1f4,'encoding':_0x2e03d5(0x1d2),'entity_fbid':_0x1ebca1[_0x2e03d5(0x19d)]};_0x2a3951=_0x2e03d5(0x1f5),_0x970101[_0x2e03d5(0x1cb)]=_0x1ebca1['lastSeqId'],_0x970101[_0x2e03d5(0x13d)]=null,global['mqttClient']['publish'](_0x2a3951,JSON['stringify'](_0x970101),{'qos':0x1,'retain':![]});var _0x488a5b=setTimeout(function(){var _0x4c5b48=_0x2e03d5;global[_0x4c5b48(0x14e)]['end'](),getSeqID();},0xbb8);_0x1ebca1['tmsWait']=function(){var _0x36231f=_0x2e03d5;clearTimeout(_0x488a5b),_0x1ebca1[_0x36231f(0x1e9)]['emitReady']?_0x3ce521({'type':_0x36231f(0x17d),'error':null}):'',delete _0x1ebca1['tmsWait'];};}),global[_0x1287af(0x14e)]['on'](_0x1287af(0x1e3),function(_0x58791e,_0x458f72,_0x2015b7){var _0x120766=_0x1287af;const _0xfe0bcf=JSON[_0x120766(0x1c1)](_0x458f72[_0x120766(0x16d)]());if(_0x58791e==='/t_ms'){if(_0x1ebca1[_0x120766(0x216)]&&typeof _0x1ebca1[_0x120766(0x216)]=='function')_0x1ebca1[_0x120766(0x216)]();_0xfe0bcf['firstDeltaSeqId']&&_0xfe0bcf[_0x120766(0x1ce)]&&(_0x1ebca1['lastSeqId']=_0xfe0bcf[_0x120766(0x1b2)],_0x1ebca1[_0x120766(0x1ce)]=_0xfe0bcf[_0x120766(0x1ce)]);if(_0xfe0bcf['lastIssuedSeqId'])_0x1ebca1[_0x120766(0x15a)]=parseInt(_0xfe0bcf[_0x120766(0x215)]);for(var _0x4b99c7 in _0xfe0bcf['deltas']){var _0x2eac0b=_0xfe0bcf[_0x120766(0x240)][_0x4b99c7];parseDelta(_0x21bd48,_0x211bc5,_0x1ebca1,_0x3ce521,{'delta':_0x2eac0b});}}else{if(_0x58791e==='/thread_typing'||_0x58791e===_0x120766(0x1ed)){var _0x33c8ab={'type':'typ','isTyping':!!_0xfe0bcf[_0x120766(0x161)],'from':_0xfe0bcf['sender_fbid'][_0x120766(0x16d)](),'threadID':utils[_0x120766(0x1dc)]((_0xfe0bcf[_0x120766(0x220)]||_0xfe0bcf[_0x120766(0x176)])['toString']())};(function(){_0x3ce521(null,_0x33c8ab);}());}else{if(_0x58791e===_0x120766(0x225)){if(!_0x1ebca1[_0x120766(0x1e9)][_0x120766(0x1f4)])for(var _0x4b99c7 in _0xfe0bcf[_0x120766(0x23b)]){var _0x5c949e=_0xfe0bcf[_0x120766(0x23b)][_0x4b99c7],_0x17132c=_0x5c949e['u'],_0xe91dd1={'type':_0x120766(0x1bb),'userID':_0x17132c[_0x120766(0x16d)](),'timestamp':_0x5c949e['l']*0x3e8,'statuses':_0x5c949e['p']};(function(){_0x3ce521(null,_0xe91dd1);}());}}}}}),process['on'](_0x1287af(0x1fc),function(){var _0x2e44cb=_0x1287af;LogUptime(),process['kill'](process[_0x2e44cb(0x206)]);}),process['on'](_0x1287af(0x1ea),()=>{LogUptime();});}function LogUptime(){var _0x4d1c9f=_0x2d6b20,_0x1aa841=process['uptime'](),{join:_0x540ddb}=require(_0x4d1c9f(0x19a));if(global[_0x4d1c9f(0x17b)][_0x4d1c9f(0x198)]['fs'][_0x4d1c9f(0x12e)](_0x540ddb(__dirname,_0x4d1c9f(0x147)))){var _0x984073=Number(global['Fca']['Require']['fs'][_0x4d1c9f(0x1f2)](_0x540ddb(__dirname,_0x4d1c9f(0x147)),_0x4d1c9f(0x1d0)))||0x0;global[_0x4d1c9f(0x17b)]['Require']['fs'][_0x4d1c9f(0x1c3)](_0x540ddb(__dirname,_0x4d1c9f(0x147)),String(Number(_0x1aa841)+_0x984073),_0x4d1c9f(0x1d0));}else{var _0x984073=0x0;global[_0x4d1c9f(0x17b)][_0x4d1c9f(0x198)]['fs'][_0x4d1c9f(0x1c3)](_0x540ddb(__dirname,_0x4d1c9f(0x147)),String(Number(_0x1aa841)+_0x984073),_0x4d1c9f(0x1d0));}}function parseDelta(_0x5d074e,_0x1053b4,_0x2830bd,_0x29d2b4,_0x56a7b5){var _0x5b03db=_0x2d6b20;if(_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x14d)]==_0x5b03db(0x1c0)){if(_0x2830bd[_0x5b03db(0x1e9)][_0x5b03db(0x160)]&&_0x2830bd[_0x5b03db(0x1e9)][_0x5b03db(0x160)]!=_0x56a7b5[_0x5b03db(0x19b)])return;(function _0x3a6da6(_0x47f7a9){var _0x300f84=_0x5b03db;if(_0x56a7b5[_0x300f84(0x19e)][_0x300f84(0x1a7)]&&_0x47f7a9==_0x56a7b5[_0x300f84(0x19e)][_0x300f84(0x1a7)]['length']||utils[_0x300f84(0x1f1)](_0x56a7b5['delta']['attachments'])!==_0x300f84(0x1a2)){var _0x4e606e;try{_0x4e606e=utils[_0x300f84(0x196)](_0x56a7b5);}catch(_0x120665){return log[_0x300f84(0x207)](_0x300f84(0x15f),_0x120665);}global[_0x300f84(0x17b)][_0x300f84(0x1db)]['event']=_0x4e606e;try{var {updateMessageCount:_0x37c701,getData:_0x5d222a,hasData:_0x16e81d}=require(_0x300f84(0x1bf));if(_0x16e81d(_0x4e606e[_0x300f84(0x1d8)])){var _0x1f2491=_0x5d222a(_0x4e606e[_0x300f84(0x1d8)]);_0x1f2491[_0x300f84(0x242)]+=0x1,_0x37c701(_0x4e606e[_0x300f84(0x1d8)],_0x1f2491);}}catch(_0x300029){}if(_0x4e606e){if(_0x2830bd[_0x300f84(0x1e9)][_0x300f84(0x1ef)])markDelivery(_0x2830bd,_0x1053b4,_0x4e606e[_0x300f84(0x1d8)],_0x4e606e['messageID']);}return!_0x2830bd[_0x300f84(0x1e9)][_0x300f84(0x23f)]&&_0x4e606e[_0x300f84(0x1be)]===_0x2830bd[_0x300f84(0x19d)]?undefined:(function(){_0x29d2b4(null,_0x4e606e);}());}else{if(_0x56a7b5[_0x300f84(0x19e)][_0x300f84(0x1a7)]&&_0x56a7b5[_0x300f84(0x19e)][_0x300f84(0x1a7)][_0x47f7a9][_0x300f84(0x14b)][_0x300f84(0x236)]==_0x300f84(0x13f))_0x1053b4[_0x300f84(0x233)](_0x56a7b5[_0x300f84(0x19e)][_0x300f84(0x1a7)][_0x47f7a9][_0x300f84(0x1ee)],(_0x166c6f,_0xd6c2cc)=>{var _0x246421=_0x300f84;if(!_0x166c6f)_0x56a7b5['delta'][_0x246421(0x1a7)][_0x47f7a9]['mercury'][_0x246421(0x199)]['url']=_0xd6c2cc;return _0x3a6da6(_0x47f7a9+0x1);});else return _0x3a6da6(_0x47f7a9+0x1);}}(0x0));}if(_0x56a7b5['delta'][_0x5b03db(0x14d)]==_0x5b03db(0x222)){var _0x4e09f1=utils[_0x5b03db(0x143)](_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x157)]);if(_0x4e09f1&&_0x4e09f1[_0x5b03db(0x240)]){for(var _0x3c1ad5 in _0x4e09f1['deltas']){var _0x2293d0=_0x4e09f1[_0x5b03db(0x240)][_0x3c1ad5];if(_0x2293d0[_0x5b03db(0x203)]&&!!_0x2830bd['globalOptions'][_0x5b03db(0x162)])(function(){var _0x4b8954=_0x5b03db;_0x29d2b4(null,{'type':'message_reaction','threadID':(_0x2293d0['deltaMessageReaction'][_0x4b8954(0x1fd)]['threadFbId']?_0x2293d0[_0x4b8954(0x203)][_0x4b8954(0x1fd)][_0x4b8954(0x1fb)]:_0x2293d0[_0x4b8954(0x203)]['threadKey'][_0x4b8954(0x17a)])[_0x4b8954(0x16d)](),'messageID':_0x2293d0[_0x4b8954(0x203)][_0x4b8954(0x1c2)],'reaction':_0x2293d0[_0x4b8954(0x203)][_0x4b8954(0x1dd)],'senderID':_0x2293d0[_0x4b8954(0x203)][_0x4b8954(0x213)][_0x4b8954(0x16d)](),'userID':_0x2293d0[_0x4b8954(0x203)]['userId'][_0x4b8954(0x16d)]()});}());else{if(_0x2293d0[_0x5b03db(0x23e)]&&!!_0x2830bd[_0x5b03db(0x1e9)][_0x5b03db(0x162)])(function(){var _0x3dbee7=_0x5b03db;_0x29d2b4(null,{'type':_0x3dbee7(0x138),'threadID':(_0x2293d0[_0x3dbee7(0x23e)][_0x3dbee7(0x1fd)][_0x3dbee7(0x1fb)]?_0x2293d0[_0x3dbee7(0x23e)][_0x3dbee7(0x1fd)][_0x3dbee7(0x1fb)]:_0x2293d0[_0x3dbee7(0x23e)]['threadKey']['otherUserFbId'])[_0x3dbee7(0x16d)](),'messageID':_0x2293d0[_0x3dbee7(0x23e)][_0x3dbee7(0x16b)],'senderID':_0x2293d0[_0x3dbee7(0x23e)][_0x3dbee7(0x1be)]['toString'](),'deletionTimestamp':_0x2293d0['deltaRecallMessageData'][_0x3dbee7(0x1f8)],'timestamp':_0x2293d0['deltaRecallMessageData'][_0x3dbee7(0x205)]});}());else{if(_0x2293d0['deltaMessageReply']){var _0xa991bf=_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)]===undefined?[]:_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x140)]===undefined?[]:_0x2293d0['deltaMessageReply'][_0x5b03db(0x1e3)]['data'][_0x5b03db(0x178)]===undefined?[]:JSON['parse'](_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)]['data'][_0x5b03db(0x178)]),_0x5e7308=_0xa991bf[_0x5b03db(0x18f)](_0x47767d=>_0x47767d['i']),_0x4817cc=_0xa991bf[_0x5b03db(0x18f)](_0x4a201e=>_0x4a201e['o']),_0x54f915=_0xa991bf[_0x5b03db(0x18f)](_0x1be49b=>_0x1be49b['l']),_0x197a37={};for(var _0x3c1ad5=0x0;_0x3c1ad5<_0x5e7308['length'];_0x3c1ad5++)_0x197a37[_0x5e7308[_0x3c1ad5]]=(_0x2293d0[_0x5b03db(0x18e)]['message'][_0x5b03db(0x1cc)]||'')[_0x5b03db(0x17c)](_0x4817cc[_0x3c1ad5],_0x4817cc[_0x3c1ad5]+_0x54f915[_0x3c1ad5]);var _0x196634={'type':_0x5b03db(0x21a),'threadID':(_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x16e)][_0x5b03db(0x1fd)][_0x5b03db(0x1fb)]?_0x2293d0['deltaMessageReply']['message'][_0x5b03db(0x16e)][_0x5b03db(0x1fd)][_0x5b03db(0x1fb)]:_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x16e)][_0x5b03db(0x1fd)][_0x5b03db(0x17a)])[_0x5b03db(0x16d)](),'messageID':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x16e)]['messageId'],'senderID':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x16e)][_0x5b03db(0x21b)][_0x5b03db(0x16d)](),'attachments':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x1a7)]['map'](function(_0x257b2a){var _0x1ca30b=_0x5b03db,_0x5184fd=JSON[_0x1ca30b(0x1c1)](_0x257b2a[_0x1ca30b(0x145)]);return Object['assign'](_0x257b2a,_0x5184fd),_0x257b2a;})[_0x5b03db(0x18f)](_0x4870ac=>{var _0x4f8065=_0x5b03db,_0x1715e1;try{_0x1715e1=utils[_0x4f8065(0x174)](_0x4870ac);}catch(_0x2705a2){_0x1715e1=_0x4870ac,_0x1715e1[_0x4f8065(0x207)]=_0x2705a2,_0x1715e1[_0x4f8065(0x1e1)]=_0x4f8065(0x20c);}return _0x1715e1;}),'args':(_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x1cc)]||'')[_0x5b03db(0x221)]()[_0x5b03db(0x1a3)](/\s+/),'body':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)][_0x5b03db(0x1cc)]||'','isGroup':!!_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)]['messageMetadata']['threadKey'][_0x5b03db(0x1fb)],'mentions':_0x197a37,'timestamp':_0x2293d0[_0x5b03db(0x18e)]['message'][_0x5b03db(0x16e)][_0x5b03db(0x205)],'participantIDs':(_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1e3)]['participants']||[])[_0x5b03db(0x18f)](_0x3d3e1d=>_0x3d3e1d[_0x5b03db(0x16d)]())};if(_0x2293d0['deltaMessageReply'][_0x5b03db(0x1ab)]){_0xa991bf=_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)]===undefined?[]:_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)]['data']===undefined?[]:_0x2293d0[_0x5b03db(0x18e)]['repliedToMessage']['data']['prng']===undefined?[]:JSON['parse'](_0x2293d0['deltaMessageReply'][_0x5b03db(0x1ab)][_0x5b03db(0x140)][_0x5b03db(0x178)]),_0x5e7308=_0xa991bf[_0x5b03db(0x18f)](_0x23a3c0=>_0x23a3c0['i']),_0x4817cc=_0xa991bf[_0x5b03db(0x18f)](_0x534261=>_0x534261['o']),_0x54f915=_0xa991bf['map'](_0x4755fc=>_0x4755fc['l']);var _0x20af3d={};for(var _0x3c1ad5=0x0;_0x3c1ad5<_0x5e7308[_0x5b03db(0x182)];_0x3c1ad5++)_0x20af3d[_0x5e7308[_0x3c1ad5]]=(_0x2293d0['deltaMessageReply'][_0x5b03db(0x1ab)]['body']||'')[_0x5b03db(0x17c)](_0x4817cc[_0x3c1ad5],_0x4817cc[_0x3c1ad5]+_0x54f915[_0x3c1ad5]);_0x196634[_0x5b03db(0x1df)]={'threadID':(_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x16e)][_0x5b03db(0x1fd)][_0x5b03db(0x1fb)]?_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)]['messageMetadata']['threadKey'][_0x5b03db(0x1fb)]:_0x2293d0['deltaMessageReply']['repliedToMessage'][_0x5b03db(0x16e)][_0x5b03db(0x1fd)][_0x5b03db(0x17a)])['toString'](),'messageID':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x16e)][_0x5b03db(0x1c2)],'senderID':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x16e)][_0x5b03db(0x21b)]['toString'](),'attachments':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x1a7)][_0x5b03db(0x18f)](function(_0x3b6f48){var _0xfa46a4=_0x5b03db,_0x859ed2=JSON[_0xfa46a4(0x1c1)](_0x3b6f48['mercuryJSON']);return Object[_0xfa46a4(0x142)](_0x3b6f48,_0x859ed2),_0x3b6f48;})[_0x5b03db(0x18f)](_0x1244b3=>{var _0x397162=_0x5b03db,_0x5882c0;try{_0x5882c0=utils[_0x397162(0x174)](_0x1244b3);}catch(_0x4a6273){_0x5882c0=_0x1244b3,_0x5882c0['error']=_0x4a6273,_0x5882c0[_0x397162(0x1e1)]=_0x397162(0x20c);}return _0x5882c0;}),'args':(_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x1cc)]||'')[_0x5b03db(0x221)]()['split'](/\s+/),'body':_0x2293d0['deltaMessageReply']['repliedToMessage'][_0x5b03db(0x1cc)]||'','isGroup':!!_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x16e)]['threadKey'][_0x5b03db(0x1fb)],'mentions':_0x20af3d,'timestamp':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x1ab)][_0x5b03db(0x16e)][_0x5b03db(0x205)],'participantIDs':(_0x2293d0['deltaMessageReply']['repliedToMessage']['participants']||[])[_0x5b03db(0x18f)](_0xcb0fc5=>_0xcb0fc5[_0x5b03db(0x16d)]())};}else{if(_0x2293d0['deltaMessageReply'][_0x5b03db(0x21e)])return _0x5d074e['post']('https://www.facebook.com/api/graphqlbatch/',_0x2830bd['jar'],{'av':_0x2830bd['globalOptions'][_0x5b03db(0x160)],'queries':JSON['stringify']({'o0':{'doc_id':'2848441488556444','query_params':{'thread_and_message_id':{'thread_id':_0x196634['threadID'],'message_id':_0x2293d0[_0x5b03db(0x18e)][_0x5b03db(0x21e)]['id']}}}})})[_0x5b03db(0x18b)](utils[_0x5b03db(0x21c)](_0x2830bd,_0x5d074e))['then'](_0x13e04b=>{var _0x167179=_0x5b03db;if(_0x13e04b[_0x13e04b[_0x167179(0x182)]-0x1][_0x167179(0x232)]>0x0)throw _0x13e04b[0x0]['o0'][_0x167179(0x1a5)];if(_0x13e04b[_0x13e04b[_0x167179(0x182)]-0x1][_0x167179(0x227)]===0x0)throw{'error':'forcedFetch:\x20there\x20was\x20no\x20successful_results','res':_0x13e04b};var _0x4d5bbf=_0x13e04b[0x0]['o0']['data'][_0x167179(0x1e3)],_0x420d2e={};for(var _0xc05ad1 in _0x4d5bbf[_0x167179(0x1e3)]['ranges'])_0x420d2e[_0x4d5bbf['message'][_0x167179(0x127)][_0xc05ad1][_0x167179(0x16a)]['id']]=(_0x4d5bbf[_0x167179(0x1e3)]['text']||'')[_0x167179(0x211)](_0x4d5bbf[_0x167179(0x1e3)][_0x167179(0x127)][_0xc05ad1][_0x167179(0x1c9)],_0x4d5bbf[_0x167179(0x1e3)][_0x167179(0x127)][_0xc05ad1]['length']);_0x196634[_0x167179(0x1df)]={'type':'Message','threadID':_0x196634[_0x167179(0x1d8)],'messageID':_0x4d5bbf[_0x167179(0x1fa)],'senderID':_0x4d5bbf['message_sender']['id'][_0x167179(0x16d)](),'attachments':_0x4d5bbf['message'][_0x167179(0x12b)][_0x167179(0x18f)](_0x22c6e3=>{var _0xecbb72=_0x167179,_0x3ec8e3;try{_0x3ec8e3=utils['_formatAttachment']({'blob_attachment':_0x22c6e3});}catch(_0x21235b){_0x3ec8e3=_0x22c6e3,_0x3ec8e3[_0xecbb72(0x207)]=_0x21235b,_0x3ec8e3[_0xecbb72(0x1e1)]=_0xecbb72(0x20c);}return _0x3ec8e3;}),'args':(_0x4d5bbf[_0x167179(0x1e3)][_0x167179(0x185)]||'')[_0x167179(0x221)]()['split'](/\s+/)||[],'body':_0x4d5bbf['message']['text']||'','isGroup':_0x196634[_0x167179(0x130)],'mentions':_0x420d2e,'timestamp':parseInt(_0x4d5bbf[_0x167179(0x21d)])};})[_0x5b03db(0x14c)](_0x57ce3a=>log[_0x5b03db(0x207)](_0x5b03db(0x166),_0x57ce3a))[_0x5b03db(0x1e8)](function(){var _0x1b7e52=_0x5b03db;if(_0x2830bd[_0x1b7e52(0x1e9)][_0x1b7e52(0x1ef)])markDelivery(_0x2830bd,_0x1053b4,_0x196634['threadID'],_0x196634[_0x1b7e52(0x16b)]);!_0x2830bd['globalOptions'][_0x1b7e52(0x23f)]&&_0x196634[_0x1b7e52(0x1be)]===_0x2830bd['userID']?undefined:(function(){_0x29d2b4(null,_0x196634);}());});else _0x196634['delta']=_0x2293d0;}if(_0x2830bd[_0x5b03db(0x1e9)][_0x5b03db(0x1ef)])markDelivery(_0x2830bd,_0x1053b4,_0x196634['threadID'],_0x196634['messageID']);return!_0x2830bd[_0x5b03db(0x1e9)][_0x5b03db(0x23f)]&&_0x196634[_0x5b03db(0x1be)]===_0x2830bd[_0x5b03db(0x19d)]?undefined:(function(){_0x29d2b4(null,_0x196634);}());}}}}return;}}switch(_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x14d)]){case _0x5b03db(0x181):{var _0x17be1d;try{_0x17be1d=utils['formatDeltaReadReceipt'](_0x56a7b5['delta']);}catch(_0x18ed4d){return log[_0x5b03db(0x207)]('Lỗi\x20Nhẹ',_0x18ed4d);}return(function(){_0x29d2b4(null,_0x17be1d);}());}case _0x5b03db(0x12a):{switch(_0x56a7b5[_0x5b03db(0x19e)]['type']){case _0x5b03db(0x1b4):case _0x5b03db(0x1de):case _0x5b03db(0x12d):case _0x5b03db(0x191):case _0x5b03db(0x1ae):case _0x5b03db(0x1ca):case _0x5b03db(0x179):case'change_thread_approval_mode':case _0x5b03db(0x241):case'messenger_call_log':case _0x5b03db(0x173):var _0x17be1d;try{_0x17be1d=utils[_0x5b03db(0x224)](_0x56a7b5[_0x5b03db(0x19e)]);}catch(_0x36d855){return console['log'](_0x56a7b5['delta']),log['error'](_0x5b03db(0x15f),_0x36d855);}return(function(){_0x29d2b4(null,_0x17be1d);}());}break;}case _0x5b03db(0x200):{if(!_0x56a7b5['delta'][_0x5b03db(0x1fd)])return;var _0x428dca=_0x56a7b5['delta'][_0x5b03db(0x1c2)],_0xb8ef68=_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x1fd)][_0x5b03db(0x1fb)];if(_0x428dca&&_0xb8ef68){const _0x5cdb24={'av':_0x2830bd['globalOptions'][_0x5b03db(0x160)],'queries':JSON[_0x5b03db(0x171)]({'o0':{'doc_id':'2848441488556444','query_params':{'thread_and_message_id':{'thread_id':_0xb8ef68[_0x5b03db(0x16d)](),'message_id':_0x428dca}}}})};_0x5d074e['post']('https://www.facebook.com/api/graphqlbatch/',_0x2830bd[_0x5b03db(0x20f)],_0x5cdb24)[_0x5b03db(0x18b)](utils[_0x5b03db(0x21c)](_0x2830bd,_0x5d074e))['then'](_0xb0c711=>{var _0x47492b=_0x5b03db;if(_0xb0c711[_0xb0c711[_0x47492b(0x182)]-0x1][_0x47492b(0x232)]>0x0)throw _0xb0c711[0x0]['o0']['errors'];if(_0xb0c711[_0xb0c711['length']-0x1][_0x47492b(0x227)]===0x0)throw{'error':'forcedFetch:\x20there\x20was\x20no\x20successful_results','res':_0xb0c711};var _0xb63d25=_0xb0c711[0x0]['o0'][_0x47492b(0x140)][_0x47492b(0x1e3)];if(utils[_0x47492b(0x1f1)](_0xb63d25)==_0x47492b(0x1c6)){log[_0x47492b(0x13e)](_0x47492b(0x166),_0xb63d25);switch(_0xb63d25[_0x47492b(0x201)]){case _0x47492b(0x188):!_0x2830bd[_0x47492b(0x1e9)][_0x47492b(0x23f)]&&_0xb63d25[_0x47492b(0x190)]['id']['toString']()===_0x2830bd[_0x47492b(0x19d)]||!_0x2830bd[_0x47492b(0x175)]?undefined:(function(){var _0x5cb498=_0x47492b;_0x29d2b4(null,{'type':_0x5cb498(0x1b5),'threadID':utils[_0x5cb498(0x1dc)](_0xb8ef68[_0x5cb498(0x16d)]()),'snippet':_0xb63d25[_0x5cb498(0x148)],'timestamp':_0xb63d25['timestamp_precise'],'author':_0xb63d25[_0x5cb498(0x190)]['id'],'image':{'attachmentID':_0xb63d25[_0x5cb498(0x129)]&&_0xb63d25[_0x5cb498(0x129)][_0x5cb498(0x208)],'width':_0xb63d25['image_with_metadata']&&_0xb63d25[_0x5cb498(0x129)]['original_dimensions']['x'],'height':_0xb63d25[_0x5cb498(0x129)]&&_0xb63d25['image_with_metadata']['original_dimensions']['y'],'url':_0xb63d25[_0x5cb498(0x129)]&&_0xb63d25[_0x5cb498(0x129)]['preview'][_0x5cb498(0x180)]}});}());break;case'UserMessage':log[_0x47492b(0x13e)](_0x47492b(0x1aa),{'type':_0x47492b(0x1e3),'senderID':utils['formatID'](_0xb63d25[_0x47492b(0x190)]['id']),'body':_0xb63d25[_0x47492b(0x1e3)]['text']||'','threadID':utils[_0x47492b(0x1dc)](_0xb8ef68[_0x47492b(0x16d)]()),'messageID':_0xb63d25[_0x47492b(0x1fa)],'attachments':[{'type':'share','ID':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x208)],'url':_0xb63d25['extensible_attachment']['story_attachment']['url'],'title':_0xb63d25['extensible_attachment']['story_attachment'][_0x47492b(0x20a)][_0x47492b(0x185)],'description':_0xb63d25['extensible_attachment']['story_attachment'][_0x47492b(0x1a6)]['text'],'source':_0xb63d25[_0x47492b(0x23c)]['story_attachment'][_0x47492b(0x16f)],'image':((_0xb63d25['extensible_attachment'][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})[_0x47492b(0x1ad)]||{})[_0x47492b(0x180)],'width':((_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})[_0x47492b(0x1ad)]||{})['width'],'height':((_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})[_0x47492b(0x1ad)]||{})['height'],'playable':(_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})['is_playable']||![],'duration':(_0xb63d25[_0x47492b(0x23c)]['story_attachment'][_0x47492b(0x20b)]||{})[_0x47492b(0x22b)]||0x0,'subattachments':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x15c)],'properties':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x223)]}],'mentions':{},'timestamp':parseInt(_0xb63d25['timestamp_precise']),'isGroup':_0xb63d25['message_sender']['id']!=_0xb8ef68[_0x47492b(0x16d)]()}),_0x29d2b4(null,{'type':'message','senderID':utils[_0x47492b(0x1dc)](_0xb63d25[_0x47492b(0x190)]['id']),'body':_0xb63d25[_0x47492b(0x1e3)][_0x47492b(0x185)]||'','threadID':utils['formatID'](_0xb8ef68['toString']()),'messageID':_0xb63d25['message_id'],'attachments':[{'type':_0x47492b(0x1a1),'ID':_0xb63d25['extensible_attachment'][_0x47492b(0x208)],'url':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x1eb)],'title':_0xb63d25[_0x47492b(0x23c)]['story_attachment']['title_with_entities'][_0x47492b(0x185)],'description':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)]['description'][_0x47492b(0x185)],'source':_0xb63d25['extensible_attachment']['story_attachment'][_0x47492b(0x16f)],'image':((_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})[_0x47492b(0x1ad)]||{})[_0x47492b(0x180)],'width':((_0xb63d25[_0x47492b(0x23c)]['story_attachment'][_0x47492b(0x20b)]||{})['image']||{})['width'],'height':((_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)]['media']||{})[_0x47492b(0x1ad)]||{})[_0x47492b(0x151)],'playable':(_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})[_0x47492b(0x202)]||![],'duration':(_0xb63d25['extensible_attachment'][_0x47492b(0x1a4)][_0x47492b(0x20b)]||{})['playable_duration_in_ms']||0x0,'subattachments':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x15c)],'properties':_0xb63d25[_0x47492b(0x23c)][_0x47492b(0x1a4)][_0x47492b(0x223)]}],'mentions':{},'timestamp':parseInt(_0xb63d25['timestamp_precise']),'isGroup':_0xb63d25[_0x47492b(0x190)]['id']!=_0xb8ef68['toString']()});}}else log[_0x47492b(0x207)](_0x47492b(0x166),_0xb63d25);})['catch'](_0x4045c5=>log[_0x5b03db(0x207)](_0x5b03db(0x166),_0x4045c5));}}break;case _0x5b03db(0x1b3):case _0x5b03db(0x219):case _0x5b03db(0x19f):{var _0x290454;try{_0x290454=utils[_0x5b03db(0x224)](_0x56a7b5[_0x5b03db(0x19e)]);}catch(_0x327eaf){return console[_0x5b03db(0x15b)](_0x327eaf),log[_0x5b03db(0x207)](_0x5b03db(0x15f),_0x327eaf);}return!_0x2830bd[_0x5b03db(0x1e9)]['selfListen']&&_0x290454[_0x5b03db(0x228)]['toString']()===_0x2830bd[_0x5b03db(0x19d)]||!_0x2830bd[_0x5b03db(0x175)]?undefined:(function(){_0x29d2b4(null,_0x290454);}());}case _0x5b03db(0x1c0):{if(_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x1a7)]!=undefined&&_0x56a7b5['delta'][_0x5b03db(0x1a7)]['length']==0x1&&_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x1a7)][0x0][_0x5b03db(0x14b)][_0x5b03db(0x23c)]!=undefined&&_0x56a7b5[_0x5b03db(0x19e)][_0x5b03db(0x1a7)][0x0][_0x5b03db(0x14b)][_0x5b03db(0x23c)][_0x5b03db(0x1a4)]['style_list'][_0x5b03db(0x1ac)](_0x5b03db(0x21f))){_0x56a7b5['delta'][_0x5b03db(0x14d)]=_0x5b03db(0x22d);var _0x17be1d;try{_0x17be1d=utils['formatDeltaEvent'](_0x56a7b5[_0x5b03db(0x19e)]);}catch(_0x48688a){return console[_0x5b03db(0x15b)](_0x56a7b5[_0x5b03db(0x19e)]),log[_0x5b03db(0x207)]('Lỗi\x20Nhẹ',_0x48688a);}return(function(){_0x29d2b4(null,_0x17be1d);}());}}break;}}function markDelivery(_0x163e71,_0x2b4c89,_0x26a471,_0x3aac2a){var _0x2d1106=_0x2d6b20;_0x26a471&&_0x3aac2a&&_0x2b4c89[_0x2d1106(0x193)](_0x26a471,_0x3aac2a,_0x3b0bfa=>{var _0x3580ea=_0x2d1106;if(_0x3b0bfa)log[_0x3580ea(0x207)](_0x3580ea(0x193),_0x3b0bfa);else _0x163e71[_0x3580ea(0x1e9)][_0x3580ea(0x1c4)]&&_0x2b4c89[_0x3580ea(0x1af)](_0x26a471,_0x5bb14c=>{var _0x28a24e=_0x3580ea;if(_0x5bb14c)log[_0x28a24e(0x207)]('markAsDelivered',_0x5bb14c);});});}module['exports']=function(_0x86bfc4,_0x499862,_0x25bfcd){var _0x4c0b32=identity;return getSeqID=function _0x3c2e61(){var _0x539e41=_0x41ef;_0x25bfcd[_0x539e41(0x184)]=![],_0x86bfc4[_0x539e41(0x150)](_0x539e41(0x137),_0x25bfcd[_0x539e41(0x20f)],form)[_0x539e41(0x18b)](utils[_0x539e41(0x21c)](_0x25bfcd,_0x86bfc4))[_0x539e41(0x18b)](_0x3e892d=>{var _0x5f41a3=_0x539e41;if(utils[_0x5f41a3(0x1f1)](_0x3e892d)!=_0x5f41a3(0x1a2)){if(global['Fca'][_0x5f41a3(0x198)][_0x5f41a3(0x1b7)]['AutoLogin'])return global[_0x5f41a3(0x17b)][_0x5f41a3(0x198)]['logger'][_0x5f41a3(0x168)](global[_0x5f41a3(0x17b)][_0x5f41a3(0x198)]['Language'][_0x5f41a3(0x1f0)][_0x5f41a3(0x132)],function(){var _0x17e291=_0x5f41a3;return global[_0x17e291(0x17b)]['Action']('AutoLogin');});else{if(!global['Fca']['Require'][_0x5f41a3(0x1b7)][_0x5f41a3(0x132)])return global[_0x5f41a3(0x17b)][_0x5f41a3(0x198)][_0x5f41a3(0x183)][_0x5f41a3(0x1ff)](global['Fca'][_0x5f41a3(0x198)]['Language'][_0x5f41a3(0x1f0)][_0x5f41a3(0x1b8)]);}return;}else{if(_0x3e892d&&_0x3e892d[_0x3e892d[_0x5f41a3(0x182)]-0x1][_0x5f41a3(0x232)]>0x0)throw _0x3e892d[0x0]['o0'][_0x5f41a3(0x1a5)];if(_0x3e892d[_0x3e892d['length']-0x1][_0x5f41a3(0x227)]===0x0)throw{'error':_0x5f41a3(0x195),'res':_0x3e892d};if(_0x3e892d[0x0]['o0'][_0x5f41a3(0x140)]['viewer'][_0x5f41a3(0x194)][_0x5f41a3(0x146)])_0x25bfcd['lastSeqId']=_0x3e892d[0x0]['o0'][_0x5f41a3(0x140)][_0x5f41a3(0x18a)][_0x5f41a3(0x194)][_0x5f41a3(0x146)],listenMqtt(_0x86bfc4,_0x499862,_0x25bfcd,_0x4c0b32);else throw{'error':_0x5f41a3(0x20e),'res':_0x3e892d};}})[_0x539e41(0x14c)](_0x167fa8=>{var _0x5d9e4a=_0x539e41;log[_0x5d9e4a(0x207)](_0x5d9e4a(0x152),_0x167fa8);if(utils[_0x5d9e4a(0x1f1)](_0x167fa8)==_0x5d9e4a(0x1c6)&&_0x167fa8['error']===global[_0x5d9e4a(0x17b)][_0x5d9e4a(0x198)]['Language'][_0x5d9e4a(0x1f0)]['ErrAppState'])_0x25bfcd[_0x5d9e4a(0x175)]=![];return _0x4c0b32(_0x167fa8);});},function(_0x48d768){var _0x4e2c65=_0x41ef;class _0x257711 extends EventEmitter{['stopListening'](_0x1af0a6){var _0x1be99f=_0x41ef;_0x1af0a6=_0x1af0a6||(()=>{}),_0x4c0b32=identity,_0x25bfcd[_0x1be99f(0x14e)]&&(_0x25bfcd[_0x1be99f(0x14e)][_0x1be99f(0x1a9)]('/webrtc'),_0x25bfcd['mqttClient'][_0x1be99f(0x1a9)](_0x1be99f(0x1f9)),_0x25bfcd['mqttClient'][_0x1be99f(0x1a9)]('/onevc'),_0x25bfcd['mqttClient'][_0x1be99f(0x218)](_0x1be99f(0x1e7),'{}'),_0x25bfcd[_0x1be99f(0x14e)]['end'](![],function(..._0x1b8282){var _0x29d8dd=_0x1be99f;_0x25bfcd[_0x29d8dd(0x14e)]=undefined;})),global['Fca'][_0x1be99f(0x1db)]['StopListening']=!![];}}var _0x5decba=new _0x257711();_0x4c0b32=_0x48d768||function(_0x26f480,_0xc84f03){var _0x1d1fd2=_0x41ef;if(_0x26f480)return _0x5decba[_0x1d1fd2(0x139)](_0x1d1fd2(0x207),_0x26f480);_0x5decba['emit'](_0x1d1fd2(0x1e3),_0xc84f03);};if(!_0x25bfcd[_0x4e2c65(0x1d5)])_0x25bfcd[_0x4e2c65(0x15a)]=null;_0x25bfcd['syncToken']=undefined,_0x25bfcd[_0x4e2c65(0x184)]=![],form={'av':_0x25bfcd[_0x4e2c65(0x1e9)][_0x4e2c65(0x160)],'queries':JSON['stringify']({'o0':{'doc_id':_0x4e2c65(0x23d),'query_params':{'limit':0x1,'before':null,'tags':[_0x4e2c65(0x1f6)],'includeDeliveryReceipts':![],'includeSeqID':!![]}}})};if(!_0x25bfcd['firstListen']||!_0x25bfcd[_0x4e2c65(0x15a)])getSeqID();else listenMqtt(_0x86bfc4,_0x499862,_0x25bfcd,_0x4c0b32);return _0x25bfcd[_0x4e2c65(0x1d5)]=![],_0x5decba;};};
+/* eslint-disable no-redeclare */
+"use strict";
+var utils = require("../utils");
+var log = require("npmlog");
+var mqtt = require('mqtt');
+var websocket = require('websocket-stream');
+var HttpsProxyAgent = require('https-proxy-agent');
+const EventEmitter = require('events');
+
+var identity = function () { };
+var form = {};
+var getSeqID = function () { };
+
+var topics = [
+    "/legacy_web",
+    "/webrtc",
+    "/rtc_multi",
+    "/onevc",
+    "/br_sr", //Notification
+    //Need to publish /br_sr right after this
+    "/sr_res",
+    "/t_ms",
+    "/thread_typing",
+    "/orca_typing_notifications",
+    "/notify_disconnect",
+    //Need to publish /messenger_sync_create_queue right after this
+    "/orca_presence",
+    //Will receive /sr_res right here.
+
+    "/inbox",
+    "/mercury",
+    "/messaging_events",
+    "/orca_message_notifications",
+    "/pp",
+    "/webrtc_response",
+];
+
+function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
+    //Don't really know what this does but I think it's for the active state?
+    //TODO: Move to ctx when implemented
+    var chatOn = ctx.globalOptions.online;
+    var foreground = false;
+
+    var sessionID = Math.floor(Math.random() * 9007199254740991) + 1;
+    var username = {
+        u: ctx.userID,
+        s: sessionID,
+        chat_on: chatOn,
+        fg: foreground,
+        d: utils.getGUID(),
+        ct: "websocket",
+        //App id from facebook
+        aid: "219994525426954",
+        mqtt_sid: "",
+        cp: 3,
+        ecp: 10,
+        st: [],
+        pm: [],
+        dc: "",
+        no_auto_fg: true,
+        gas: null,
+        pack: []
+    };
+    var cookies = ctx.jar.getCookies("https://www.facebook.com").join("; ");
+
+    var host;
+    if (ctx.mqttEndpoint) host = `${ctx.mqttEndpoint}&sid=${sessionID}`;
+    else if (ctx.region) host = `wss://edge-chat.facebook.com/chat?region=${ctx.region.toLocaleLowerCase()}&sid=${sessionID}`;
+    else host = `wss://edge-chat.facebook.com/chat?sid=${sessionID}`;
+
+    var options = {
+        clientId: "mqttwsclient",
+        protocolId: 'MQIsdp',
+        protocolVersion: 3,
+        username: JSON.stringify(username),
+        clean: true,
+        wsOptions: {
+            headers: {
+                'Cookie': cookies,
+                'Origin': 'https://www.facebook.com',
+                'User-Agent': ctx.globalOptions.userAgent,
+                'Referer': 'https://www.facebook.com/',
+                'Host': new URL(host).hostname //'edge-chat.facebook.com'
+            },
+            origin: 'https://www.facebook.com',
+            protocolVersion: 13
+        },
+        keepalive: 10,
+        reschedulePings: false
+    };
+
+    if (typeof ctx.globalOptions.proxy != "undefined") {
+        var agent = new HttpsProxyAgent(ctx.globalOptions.proxy);
+        options.wsOptions.agent = agent;
+    }
+
+    ctx.mqttClient = new mqtt.Client(_ => websocket(host, options.wsOptions), options);
+
+    var mqttClient = ctx.mqttClient;
+
+    mqttClient.on('error', function (err) {
+        log.error("listenMqtt", err);
+        mqttClient.end();
+        if (ctx.globalOptions.autoReconnect) getSeqID();
+        else globalCallback({ type: "stop_listen", error: "Connection refused: Server unavailable" }, null);
+    });
+
+    mqttClient.on('connect', function () {
+        topics.forEach(topicsub => mqttClient.subscribe(topicsub));
+
+        var topic;
+        var queue = {
+            sync_api_version: 10,
+            max_deltas_able_to_process: 1000,
+            delta_batch_size: 500,
+            encoding: "JSON",
+            entity_fbid: ctx.userID,
+        };
+
+        if (ctx.syncToken) {
+            topic = "/messenger_sync_get_diffs";
+            queue.last_seq_id = ctx.lastSeqId;
+            queue.sync_token = ctx.syncToken;
+        } else {
+            topic = "/messenger_sync_create_queue";
+            queue.initial_titan_sequence_id = ctx.lastSeqId;
+            queue.device_params = null;
+        }
+
+        mqttClient.publish(topic, JSON.stringify(queue), { qos: 1, retain: false });
+        mqttClient.publish("/foreground_state", JSON.stringify({"foreground": chatOn}), {qos: 1});
+        var rTimeout = setTimeout(function () {
+            mqttClient.end();
+            getSeqID();
+        }, 3000);
+
+        ctx.tmsWait = function () {
+            clearTimeout(rTimeout);
+            ctx.globalOptions.emitReady ? globalCallback({
+                type: "ready",
+                error: null
+            }) : "";
+            delete ctx.tmsWait;
+        };
+    });
+
+    mqttClient.on('message', function (topic, message, _packet) {
+        try {
+            var jsonMessage = JSON.parse(message);
+        } catch (ex) {
+            return log.error("listenMqtt", ex);
+        }
+        if (topic === "/t_ms") {
+            if (ctx.tmsWait && typeof ctx.tmsWait == "function") ctx.tmsWait();
+
+            if (jsonMessage.firstDeltaSeqId && jsonMessage.syncToken) {
+                ctx.lastSeqId = jsonMessage.firstDeltaSeqId;
+                ctx.syncToken = jsonMessage.syncToken;
+            }
+
+            if (jsonMessage.lastIssuedSeqId) ctx.lastSeqId = parseInt(jsonMessage.lastIssuedSeqId);
+
+            //If it contains more than 1 delta
+            for (var i in jsonMessage.deltas) {
+                var delta = jsonMessage.deltas[i];
+                parseDelta(defaultFuncs, api, ctx, globalCallback, { "delta": delta });
+            }
+        } else if (topic === "/thread_typing" || topic === "/orca_typing_notifications") {
+            var typ = {
+                type: "typ",
+                isTyping: !!jsonMessage.state,
+                from: jsonMessage.sender_fbid.toString(),
+                threadID: utils.formatID((jsonMessage.thread || jsonMessage.sender_fbid).toString())
+            };
+            (function () { globalCallback(null, typ); })();
+        } else if (topic === "/orca_presence") {
+            if (!ctx.globalOptions.updatePresence) {
+                for (var i in jsonMessage.list) {
+                    var data = jsonMessage.list[i];
+                    var userID = data["u"];
+
+                    var presence = {
+                        type: "presence",
+                        userID: userID.toString(),
+                        //Convert to ms
+                        timestamp: data["l"] * 1000,
+                        statuses: data["p"]
+                    };
+                    (function () { globalCallback(null, presence); })();
+                }
+            }
+        }
+
+    });
+
+    mqttClient.on('close', function () {
+        //(function () { globalCallback("Connection closed."); })();
+        // client.end();
+    });
+}
+
+function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
+    if (v.delta.class == "NewMessage") {
+        //Not tested for pages
+        if (ctx.globalOptions.pageID && ctx.globalOptions.pageID != v.queue) return;
+
+        (function resolveAttachmentUrl(i) {
+            if (v.delta.attachments && (i == v.delta.attachments.length)) {
+                var fmtMsg;
+                try {
+                    fmtMsg = utils.formatDeltaMessage(v);
+                } catch (err) {
+                    return globalCallback({
+                        error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                        detail: err,
+                        res: v,
+                        type: "parse_error"
+                    });
+                }
+                if (fmtMsg)
+                    if (ctx.globalOptions.autoMarkDelivery) markDelivery(ctx, api, fmtMsg.threadID, fmtMsg.messageID);
+
+                return !ctx.globalOptions.selfListen && fmtMsg.senderID === ctx.userID ? undefined : (function () { globalCallback(null, fmtMsg); })();
+            } else {
+                if (v.delta.attachments && (v.delta.attachments[i].mercury.attach_type == "photo")) {
+                    api.resolvePhotoUrl(v.delta.attachments[i].fbid, (err, url) => {
+                        if (!err) v.delta.attachments[i].mercury.metadata.url = url;
+                        return resolveAttachmentUrl(i + 1);
+                    });
+                } else return resolveAttachmentUrl(i + 1);
+            }
+        })(0);
+    }
+
+    if (v.delta.class == "ClientPayload") {
+        var clientPayload = utils.decodeClientPayload(v.delta.payload);
+        if (clientPayload && clientPayload.deltas) {
+            for (var i in clientPayload.deltas) {
+                var delta = clientPayload.deltas[i];
+                if (delta.deltaMessageReaction && !!ctx.globalOptions.listenEvents) {
+                    (function () {
+                        globalCallback(null, {
+                            type: "message_reaction",
+                            threadID: (delta.deltaMessageReaction.threadKey.threadFbId ? delta.deltaMessageReaction.threadKey.threadFbId : delta.deltaMessageReaction.threadKey.otherUserFbId).toString(),
+                            messageID: delta.deltaMessageReaction.messageId,
+                            reaction: delta.deltaMessageReaction.reaction,
+                            senderID: delta.deltaMessageReaction.senderId.toString(),
+                            userID: delta.deltaMessageReaction.userId.toString()
+                        });
+                    })();
+                } else if (delta.deltaRecallMessageData && !!ctx.globalOptions.listenEvents) {
+                    (function () {
+                        globalCallback(null, {
+                            type: "message_unsend",
+                            threadID: (delta.deltaRecallMessageData.threadKey.threadFbId ? delta.deltaRecallMessageData.threadKey.threadFbId : delta.deltaRecallMessageData.threadKey.otherUserFbId).toString(),
+                            messageID: delta.deltaRecallMessageData.messageID,
+                            senderID: delta.deltaRecallMessageData.senderID.toString(),
+                            deletionTimestamp: delta.deltaRecallMessageData.deletionTimestamp,
+                            timestamp: delta.deltaRecallMessageData.timestamp
+                        });
+                    })();
+                } else if (delta.deltaMessageReply) {
+                    //Mention block - #1
+                    var mdata =
+                        delta.deltaMessageReply.message === undefined ? [] :
+                            delta.deltaMessageReply.message.data === undefined ? [] :
+                                delta.deltaMessageReply.message.data.prng === undefined ? [] :
+                                    JSON.parse(delta.deltaMessageReply.message.data.prng);
+                    var m_id = mdata.map(u => u.i);
+                    var m_offset = mdata.map(u => u.o);
+                    var m_length = mdata.map(u => u.l);
+
+                    var mentions = {};
+
+                    for (var i = 0; i < m_id.length; i++) mentions[m_id[i]] = (delta.deltaMessageReply.message.body || "").substring(m_offset[i], m_offset[i] + m_length[i]);
+                    //Mention block - 1#
+                    var callbackToReturn = {
+                        type: "message_reply",
+                        threadID: (delta.deltaMessageReply.message.messageMetadata.threadKey.threadFbId ? delta.deltaMessageReply.message.messageMetadata.threadKey.threadFbId : delta.deltaMessageReply.message.messageMetadata.threadKey.otherUserFbId).toString(),
+                        messageID: delta.deltaMessageReply.message.messageMetadata.messageId,
+                        senderID: delta.deltaMessageReply.message.messageMetadata.actorFbId.toString(),
+                        attachments: delta.deltaMessageReply.message.attachments.map(function (att) {
+                            var mercury = JSON.parse(att.mercuryJSON);
+                            Object.assign(att, mercury);
+                            return att;
+                        }).map(att => {
+                            var x;
+                            try {
+                                x = utils._formatAttachment(att);
+                            } catch (ex) {
+                                x = att;
+                                x.error = ex;
+                                x.type = "unknown";
+                            }
+                            return x;
+                        }),
+                        args: (delta.deltaMessageReply.message.body || "").trim().split(/\s+/),
+                        body: (delta.deltaMessageReply.message.body || ""),
+                        isGroup: !!delta.deltaMessageReply.message.messageMetadata.threadKey.threadFbId,
+                        mentions: mentions,
+                        timestamp: delta.deltaMessageReply.message.messageMetadata.timestamp,
+                        participantIDs: (delta.deltaMessageReply.message.participants || []).map(e => e.toString())
+                    };
+
+                    if (delta.deltaMessageReply.repliedToMessage) {
+                        //Mention block - #2
+                        mdata =
+                            delta.deltaMessageReply.repliedToMessage === undefined ? [] :
+                                delta.deltaMessageReply.repliedToMessage.data === undefined ? [] :
+                                    delta.deltaMessageReply.repliedToMessage.data.prng === undefined ? [] :
+                                        JSON.parse(delta.deltaMessageReply.repliedToMessage.data.prng);
+                        m_id = mdata.map(u => u.i);
+                        m_offset = mdata.map(u => u.o);
+                        m_length = mdata.map(u => u.l);
+
+                        var rmentions = {};
+
+                        for (var i = 0; i < m_id.length; i++) rmentions[m_id[i]] = (delta.deltaMessageReply.repliedToMessage.body || "").substring(m_offset[i], m_offset[i] + m_length[i]);
+                        //Mention block - 2#
+                        callbackToReturn.messageReply = {
+                            threadID: (delta.deltaMessageReply.repliedToMessage.messageMetadata.threadKey.threadFbId ? delta.deltaMessageReply.repliedToMessage.messageMetadata.threadKey.threadFbId : delta.deltaMessageReply.repliedToMessage.messageMetadata.threadKey.otherUserFbId).toString(),
+                            messageID: delta.deltaMessageReply.repliedToMessage.messageMetadata.messageId,
+                            senderID: delta.deltaMessageReply.repliedToMessage.messageMetadata.actorFbId.toString(),
+                            attachments: delta.deltaMessageReply.repliedToMessage.attachments.map(function (att) {
+                                var mercury = JSON.parse(att.mercuryJSON);
+                                Object.assign(att, mercury);
+                                return att;
+                            }).map(att => {
+                                var x;
+                                try {
+                                    x = utils._formatAttachment(att);
+                                } catch (ex) {
+                                    x = att;
+                                    x.error = ex;
+                                    x.type = "unknown";
+                                }
+                                return x;
+                            }),
+                            args: (delta.deltaMessageReply.repliedToMessage.body || "").trim().split(/\s+/),
+                            body: delta.deltaMessageReply.repliedToMessage.body || "",
+                            isGroup: !!delta.deltaMessageReply.repliedToMessage.messageMetadata.threadKey.threadFbId,
+                            mentions: rmentions,
+                            timestamp: delta.deltaMessageReply.repliedToMessage.messageMetadata.timestamp,
+                            participantIDs: (delta.deltaMessageReply.repliedToMessage.participants || []).map(e => e.toString())
+                        };
+                    } else if (delta.deltaMessageReply.replyToMessageId) {
+                        return defaultFuncs
+                            .post("https://www.facebook.com/api/graphqlbatch/", ctx.jar, {
+                                "av": ctx.globalOptions.pageID,
+                                "queries": JSON.stringify({
+                                    "o0": {
+                                        //Using the same doc_id as forcedFetch
+                                        "doc_id": "2848441488556444",
+                                        "query_params": {
+                                            "thread_and_message_id": {
+                                                "thread_id": callbackToReturn.threadID,
+                                                "message_id": delta.deltaMessageReply.replyToMessageId.id,
+                                            }
+                                        }
+                                    }
+                                })
+                            })
+                            .then(utils.parseAndCheckLogin(ctx, defaultFuncs))
+                            .then((resData) => {
+                                if (resData[resData.length - 1].error_results > 0) throw resData[0].o0.errors;
+                                if (resData[resData.length - 1].successful_results === 0) throw { error: "forcedFetch: there was no successful_results", res: resData };
+                                var fetchData = resData[0].o0.data.message;
+                                var mobj = {};
+                                for (var n in fetchData.message.ranges) mobj[fetchData.message.ranges[n].entity.id] = (fetchData.message.text || "").substr(fetchData.message.ranges[n].offset, fetchData.message.ranges[n].length);
+
+                                callbackToReturn.messageReply = {
+                                    threadID: callbackToReturn.threadID,
+                                    messageID: fetchData.message_id,
+                                    senderID: fetchData.message_sender.id.toString(),
+                                    attachments: fetchData.message.blob_attachment.map(att => {
+                                        var x;
+                                        try {
+                                            x = utils._formatAttachment({ blob_attachment: att });
+                                        } catch (ex) {
+                                            x = att;
+                                            x.error = ex;
+                                            x.type = "unknown";
+                                        }
+                                        return x;
+                                    }),
+                                    args: (fetchData.message.text || "").trim().split(/\s+/) || [],
+                                    body: fetchData.message.text || "",
+                                    isGroup: callbackToReturn.isGroup,
+                                    mentions: mobj,
+                                    timestamp: parseInt(fetchData.timestamp_precise)
+                                };
+                            })
+                            .catch(err => log.error("forcedFetch", err))
+                            .finally(function () {
+                                if (ctx.globalOptions.autoMarkDelivery) markDelivery(ctx, api, callbackToReturn.threadID, callbackToReturn.messageID);
+                                !ctx.globalOptions.selfListen && callbackToReturn.senderID === ctx.userID ? undefined : (function () { globalCallback(null, callbackToReturn); })();
+                            });
+                    } else callbackToReturn.delta = delta;
+
+                    if (ctx.globalOptions.autoMarkDelivery) markDelivery(ctx, api, callbackToReturn.threadID, callbackToReturn.messageID);
+
+                    return !ctx.globalOptions.selfListen && callbackToReturn.senderID === ctx.userID ? undefined : (function () { globalCallback(null, callbackToReturn); })();
+                }
+            }
+            return;
+        }
+    }
+
+    if (v.delta.class !== "NewMessage" && !ctx.globalOptions.listenEvents) return;
+    switch (v.delta.class) {
+        case "ReadReceipt":
+            var fmtMsg;
+            try {
+                fmtMsg = utils.formatDeltaReadReceipt(v.delta);
+            } catch (err) {
+                return globalCallback({
+                    error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                    detail: err,
+                    res: v.delta,
+                    type: "parse_error"
+                });
+            }
+            return (function () { globalCallback(null, fmtMsg); })();
+        case "AdminTextMessage":
+            switch (v.delta.type) {
+                case "change_thread_theme":
+                case "change_thread_icon":
+                case "change_thread_nickname":
+                case "change_thread_admins":
+                case "change_thread_approval_mode":
+                case "joinable_group_link_mode_change":
+                case "rtc_call_log":
+                case "group_poll":
+                case "update_vote": 
+                case "magic_words": 
+                case "messenger_call_log":  
+                case "participant_joined_group_call":
+                    var fmtMsg;
+                    try {
+                        fmtMsg = utils.formatDeltaEvent(v.delta);
+                    } catch (err) {
+                        return globalCallback({
+                            error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                            detail: err,
+                            res: v.delta,
+                            type: "parse_error"
+                        });
+                    }
+                    return (function () { globalCallback(null, fmtMsg); })();
+                default:
+                    return;
+            }
+            break;
+        //For group images
+        case "ForcedFetch":
+            if (!v.delta.threadKey) return;
+            var mid = v.delta.messageId;
+            var tid = v.delta.threadKey.threadFbId;
+            if (mid && tid) {
+                const form = {
+                    "av": ctx.globalOptions.pageID,
+                    "queries": JSON.stringify({
+                        "o0": {
+                            //This doc_id is valid as of March 25, 2020
+                            "doc_id": "2848441488556444",
+                            "query_params": {
+                                "thread_and_message_id": {
+                                    "thread_id": tid.toString(),
+                                    "message_id": mid,
+                                }
+                            }
+                        }
+                    })
+                };
+
+                defaultFuncs
+                    .post("https://www.facebook.com/api/graphqlbatch/", ctx.jar, form)
+                    .then(utils.parseAndCheckLogin(ctx, defaultFuncs))
+                    .then((resData) => {
+                        if (resData[resData.length - 1].error_results > 0) throw resData[0].o0.errors;
+
+                        if (resData[resData.length - 1].successful_results === 0) throw { error: "forcedFetch: there was no successful_results", res: resData };
+
+                        var fetchData = resData[0].o0.data.message;
+
+                        if (utils.getType(fetchData) == "Object") {
+                            log.info("forcedFetch", fetchData);
+                            switch (fetchData.__typename) {
+                                case "ThreadImageMessage":
+                                    (!ctx.globalOptions.selfListen &&
+                                        fetchData.message_sender.id.toString() === ctx.userID) ||
+                                        !ctx.loggedIn ?
+                                        undefined :
+                                        (function () {
+                                            globalCallback(null, {
+                                                type: "change_thread_image",
+                                                threadID: utils.formatID(tid.toString()),
+                                                snippet: fetchData.snippet,
+                                                timestamp: fetchData.timestamp_precise,
+                                                author: fetchData.message_sender.id,
+                                                image: {
+                                                    attachmentID: fetchData.image_with_metadata && fetchData.image_with_metadata.legacy_attachment_id,
+                                                    width: fetchData.image_with_metadata && fetchData.image_with_metadata.original_dimensions.x,
+                                                    height: fetchData.image_with_metadata && fetchData.image_with_metadata.original_dimensions.y,
+                                                    url: fetchData.image_with_metadata && fetchData.image_with_metadata.preview.uri
+                                                }
+                                            });
+                                        })();
+                                    break;
+                                case "UserMessage":
+                                    log.info("ff-Return", {
+                                        type: "message",
+                                        senderID: utils.formatID(fetchData.message_sender.id),
+                                        body: fetchData.message.text || "",
+                                        threadID: utils.formatID(tid.toString()),
+                                        messageID: fetchData.message_id,
+                                        attachments: [{
+                                            type: "share",
+                                            ID: fetchData.extensible_attachment.legacy_attachment_id,
+                                            url: fetchData.extensible_attachment.story_attachment.url,
+
+                                            title: fetchData.extensible_attachment.story_attachment.title_with_entities.text,
+                                            description: fetchData.extensible_attachment.story_attachment.description.text,
+                                            source: fetchData.extensible_attachment.story_attachment.source,
+
+                                            image: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).uri,
+                                            width: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).width,
+                                            height: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).height,
+                                            playable: (fetchData.extensible_attachment.story_attachment.media || {}).is_playable || false,
+                                            duration: (fetchData.extensible_attachment.story_attachment.media || {}).playable_duration_in_ms || 0,
+
+                                            subattachments: fetchData.extensible_attachment.subattachments,
+                                            properties: fetchData.extensible_attachment.story_attachment.properties,
+                                        }],
+                                        mentions: {},
+                                        timestamp: parseInt(fetchData.timestamp_precise),
+                                        isGroup: (fetchData.message_sender.id != tid.toString())
+                                    });
+                                    globalCallback(null, {
+                                        type: "message",
+                                        senderID: utils.formatID(fetchData.message_sender.id),
+                                        body: fetchData.message.text || "",
+                                        threadID: utils.formatID(tid.toString()),
+                                        messageID: fetchData.message_id,
+                                        attachments: [{
+                                            type: "share",
+                                            ID: fetchData.extensible_attachment.legacy_attachment_id,
+                                            url: fetchData.extensible_attachment.story_attachment.url,
+
+                                            title: fetchData.extensible_attachment.story_attachment.title_with_entities.text,
+                                            description: fetchData.extensible_attachment.story_attachment.description.text,
+                                            source: fetchData.extensible_attachment.story_attachment.source,
+
+                                            image: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).uri,
+                                            width: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).width,
+                                            height: ((fetchData.extensible_attachment.story_attachment.media || {}).image || {}).height,
+                                            playable: (fetchData.extensible_attachment.story_attachment.media || {}).is_playable || false,
+                                            duration: (fetchData.extensible_attachment.story_attachment.media || {}).playable_duration_in_ms || 0,
+
+                                            subattachments: fetchData.extensible_attachment.subattachments,
+                                            properties: fetchData.extensible_attachment.story_attachment.properties,
+                                        }],
+                                        mentions: {},
+                                        timestamp: parseInt(fetchData.timestamp_precise),
+                                        isGroup: (fetchData.message_sender.id != tid.toString())
+                                    });
+                            }
+                        } else log.error("forcedFetch", fetchData);
+                    })
+                    .catch((err) => log.error("forcedFetch", err));
+            }
+            break;
+        case "ThreadName":
+        case "ParticipantsAddedToGroupThread":
+        case "ParticipantLeftGroupThread":
+            var formattedEvent;
+            try {
+                formattedEvent = utils.formatDeltaEvent(v.delta);
+            } catch (err) {
+                return globalCallback({
+                    error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                    detail: err,
+                    res: v.delta,
+                    type: "parse_error"
+                });
+            }
+            return (!ctx.globalOptions.selfListen && formattedEvent.author.toString() === ctx.userID) || !ctx.loggedIn ? undefined : (function () { globalCallback(null, formattedEvent); })();
+    }
+}
+
+function markDelivery(ctx, api, threadID, messageID) {
+    if (threadID && messageID) {
+        api.markAsDelivered(threadID, messageID, (err) => {
+            if (err) log.error("markAsDelivered", err);
+            else {
+                if (ctx.globalOptions.autoMarkRead) {
+                    api.markAsRead(threadID, (err) => {
+                        if (err) log.error("markAsDelivered", err);
+                    });
+                }
+            }
+        });
+    }
+}
+
+module.exports = function (defaultFuncs, api, ctx) {
+    var globalCallback = identity;
+    getSeqID = function getSeqID() {
+        ctx.t_mqttCalled = false;
+        defaultFuncs
+            .post("https://www.facebook.com/api/graphqlbatch/", ctx.jar, form)
+            .then(utils.parseAndCheckLogin(ctx, defaultFuncs))
+            .then((resData) => {
+                if (utils.getType(resData) != "Array") throw { error: "Not logged in", res: resData };
+                if (resData && resData[resData.length - 1].error_results > 0) throw resData[0].o0.errors;
+                if (resData[resData.length - 1].successful_results === 0) throw { error: "getSeqId: there was no successful_results", res: resData };
+                if (resData[0].o0.data.viewer.message_threads.sync_sequence_id) {
+                    ctx.lastSeqId = resData[0].o0.data.viewer.message_threads.sync_sequence_id;
+                    listenMqtt(defaultFuncs, api, ctx, globalCallback);
+                } else throw { error: "getSeqId: no sync_sequence_id found.", res: resData };
+            })
+            .catch((err) => {
+                log.error("getSeqId", err);
+                if (utils.getType(err) == "Object" && err.error === "Not logged in") ctx.loggedIn = false;
+                return globalCallback(err);
+            });
+    };
+
+    return async function (callback) {
+        class MessageEmitter extends EventEmitter {
+            stopListening(callback) {
+                callback = callback || (() => { });
+                globalCallback = identity;
+                if (ctx.mqttClient) {
+                    ctx.mqttClient.unsubscribe("/webrtc");
+                    ctx.mqttClient.unsubscribe("/rtc_multi");
+                    ctx.mqttClient.unsubscribe("/onevc");
+                    ctx.mqttClient.publish("/browser_close", "{}");
+                    ctx.mqttClient.end(false, function (...data) {
+                        callback(data);
+                        ctx.mqttClient = undefined;
+                    });
+                }
+            }
+        }
+
+        var msgEmitter = new MessageEmitter();
+        globalCallback = (callback || function (error, message) {
+            if (error) return msgEmitter.emit("error", error);
+            msgEmitter.emit("message", message);
+        });
+
+        //Reset some stuff
+        if (!ctx.firstListen) ctx.lastSeqId = null;
+        ctx.syncToken = undefined;
+        ctx.t_mqttCalled = false;
+
+        //Same request as getThreadList
+        form = {
+            "av": ctx.globalOptions.pageID,
+            "queries": JSON.stringify({
+                "o0": {
+                    "doc_id": "3336396659757871",
+                    "query_params": {
+                        "limit": 1,
+                        "before": null,
+                        "tags": ["INBOX"],
+                        "includeDeliveryReceipts": false,
+                        "includeSeqID": true
+                    }
+                }
+            })
+        };
+
+        if (!ctx.firstListen || !ctx.lastSeqId) getSeqID();
+        else listenMqtt(defaultFuncs, api, ctx, globalCallback);
+        ctx.firstListen = false;
+        return msgEmitter;
+    };
+};
