@@ -3,7 +3,7 @@ const chalkAnimation = require('chalkercli');
 const readline = require('readline');
 const ProgressBar = require('progress');
 
-const str = '[ SERVER-LOADING ] » Đang tiến hành khởi động hệ thống, vui lòng chờ một chút.';
+const str = '[ SERVER-LOADING ] » System is starting up, please wait a moment.';
 const rainbow = chalkAnimation.rainbow(str);
 const progressBar = new ProgressBar('[:bar]', { total: 5 });
 
@@ -51,12 +51,13 @@ job[Math.floor(Math.random() * job.length)]
     var random2 = 
 job[Math.floor(Math.random() * job.length)]
 const logo = `
-██████╗ ██╗   ██╗ █████╗     ████████╗ █████╗ ██╗ 
-██╔══██╗██║   ██║██╔══██     ╚══██╔══╝██╔══██╗██║
-██║  ██║██║   ██║██║  ╚═╝       ██║   ███████║██║
-██║  ██║██║   ██║██║  ██╗       ██║   ██╔══██║██║
-██████╔╝╚██████╔╝╚█████╔╝       ██║   ██║  ██║██║
-╚═════╝  ╚═════╝  ╚════╝        ╚═╝   ╚═╝  ╚═╝╚═╝`;
+
+╭━━━┳╮╱╭┳━━━┳━╮╱╭┳╮╭━┳━━━┳━━━╮
+┃╭━╮┃┃╱┃┃╭━╮┃┃╰╮┃┃┃┃╭┫╭━╮┃╭━╮┃
+┃╰━━┫╰━╯┃┃╱┃┃╭╮╰╯┃╰╯╯┃┃╱┃┃╰━╯┃
+╰━━╮┃╭━╮┃╰━╯┃┃╰╮┃┃╭╮┃┃╰━╯┃╭╮╭╯
+┃╰━╯┃┃╱┃┃╭━╮┃┃╱┃┃┃┃┃╰┫╭━╮┃┃┃╰╮
+╰━━━┻╯╱╰┻╯╱╰┻╯╱╰━┻╯╰━┻╯╱╰┻╯╰━╯`;
 
 function getRandomColors() {
   const colors1 = ["FFFFFF","FFEBCD","F5F5DC","F0FFF0","F5FFFA","F0FFFF","F0F8FF","FFF5EE","F5F5F5","FF9900", "FFFF33", "33FFFF", "FF99FF", "FF3366", "FFFF66", "FF00FF", "66FF99", "00CCFF", "FF0099", "FF0066", "0033FF", "FF9999", "00FF66", "00FFFF","CCFFFF","8F00FF","FF00CC","FF0000","FF1100","FF3300","FF4400","FF5500","FF6600","FF7700","FF8800","FF9900","FFaa00","FFbb00","FFcc00","FFdd00","FFee00","FFff00","FFee00","FFdd00","FFcc00","FFbb00","FFaa00","FF9900","FF8800","FF7700","FF6600","FF5500","FF4400","FF3300","FF2200","FF1100"];
@@ -102,11 +103,11 @@ console.log(chalk2(coloredData.split('\n').map(line => horizontalPadding + line)
   const packageJson = require('./package.json');
 if (packageJson.dependencies) {
   const dependencies = Object.keys(packageJson.dependencies);
-  console.log(chalk2.bold.hex("#" + random)('[ LOADER-PACKAGE ] » ') + chalk2.bold.hex("#" + random2)(`Load thành công ${dependencies.length} package`))
-    console.log(chalk2.bold.hex("#" + random)(`[ LIST-PACKAGE] » `) + chalk2.bold.hex("#" + random2)(`Tổng package hiện có: ${dependencies.length}`))
+  console.log(chalk2.bold.hex("#" + random)('[ LOADER-PACKAGE ] » ') + chalk2.bold.hex("#" + random2)(`Load successful ${dependencies.length} package`))
+    console.log(chalk2.bold.hex("#" + random)(`[ LIST-PACKAGE] » `) + chalk2.bold.hex("#" + random2)(`Total current packages: ${dependencies.length}`))
 
 } else {
-  console.log(chalk2.bold.hex("#" + random)('[ ERROR-PACKAGE ] » ') + chalk2.bold.hex("#" + random2)('Không thể load được package.'));
+  console.log(chalk2.bold.hex("#" + random)('[ ERROR-PACKAGE ] » ') + chalk2.bold.hex("#" + random2)('Unable to load package.'));
 }
 });
 
@@ -157,36 +158,36 @@ var mau = ["#0000FF","#00FF00","#00FFFF"];
 var dtai = mau[Math.floor(Math.random() * mau.length)];
     const item = [
   {
-    "thiết bị": "RAM",
-    "dung lượng": `${(totalMemory / (1024 * 1024 * 1024)).toFixed(2)} MB`,
-    "phần trăm": `${memoryUsage.toFixed(2)} %`
+    "device": "RAM",
+    "storage capacity": `${(totalMemory / (1024 * 1024 * 1024)).toFixed(2)} MB`,
+    "percentage": `${memoryUsage.toFixed(2)} %`
   },
   {
-    "thiết bị": "CPU",
-    "dung lượng": `${os.cpus().length} cores`,
-    "phần trăm": `${cpuUsage.toFixed(2)} %`
+    "device": "CPU",
+    "storage capacity": `${os.cpus().length} cores`,
+    "percentage": `${cpuUsage.toFixed(2)} %`
   },
   {
-    "thiết bị": "Disk",
-    "dung lượng": `${(diskUsage / (1024 * 1024 * 1024)).toFixed(2)} GB`,
-    "phần trăm": `${diskUsagePercentage.toFixed(2)} %`
+    "device": "Disk",
+    "capacity": `${(diskUsage / (1024 * 1024 * 1024)).toFixed(2)} GB`,
+    "percentage": `${diskUsagePercentage.toFixed(2)} %`
   },
   {
-    "thiết bị": "CPU Usage",
-    "dung lượng": `${cpuUsage.toFixed(0)} MB`,
-    "phần trăm": `${cpuUsage.toFixed(2)} %`
+    "device": "CPU Usage",
+    "capacity": `${cpuUsage.toFixed(0)} MB`,
+    "percentage": `${cpuUsage.toFixed(2)} %`
   },
   {
-  "thiết bị": "Memory Usage",
-  "dung lượng": `${memoryUsage.toFixed(0)} MB`,
-  "phần trăm": `${memoryUsage.toFixed(2)} %`
+  "device": "Memory Usage",
+  "capacity": `${memoryUsage.toFixed(0)} MB`,
+  "percentage": `${memoryUsage.toFixed(2)} %`
   },
 ];
 
 function startBot(message) {
-    (message) ? logger(message, "[ Bắt đầu ]") : "";
+    (message) ? logger(message, "[ Start ]") : "";
 
-    const child = spawn("node", ["mitai"], {
+    const child = spawn("node", ["SHANKAR"], {
   cwd: __dirname ,
   stdio: "inherit",
   shell: true
@@ -194,14 +195,14 @@ function startBot(message) {
 
     child.on("close", (codeExit) => {
         if (codeExit != 0 || global.countRestart && global.countRestart < 5) {
-            startBot("Tiến hành khởi động lại...");
+            startBot("Proceeding to restart...");
             global.countRestart += 1;
             return;
         } else return;
     });
 
     child.on("error", function (error) {
-        logger("Đã xảy ra lỗi: " + JSON.stringify(error), "[ Bắt đầu ]");
+        logger("An error has occurred: " + JSON.stringify(error), "[ Start ]");
     });
 };
     setTimeout(() => {
@@ -210,7 +211,7 @@ console.table(item);
 startBot();
         //end index //
   } catch (error) {
-    console.error(`[ ERROR ] -> ${appStateFilePath} đã bị lỗi!\nLỗi là: ${error}\n[ GET APPSTATE ] -> Hệ thống đang tiến hành lấy ${appStateFilePath} mới!\n`);
+    console.error(`[ ERROR ] -> ${appStateFilePath} has encountered an error!\nThe error is: ${error}\n[ GET APPSTATE ] -> The system is retrieving ${appStateFilePath} new!\n`);
 
     function startLogin() {
       const child = spawn("node", ["login.js"], {
