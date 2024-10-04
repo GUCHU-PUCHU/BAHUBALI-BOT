@@ -2,8 +2,8 @@ module.exports.config = {
 	name: "weather",
 	version: "1.0.1",
 	hasPermssion: 0,
-	credits: "Mirai Team",
-	description: "Xem thông tin thời tiết tại khu vực",
+	credits: "SHANKAR PROJECT",
+	description: "Get weather information for a location",
 	commandCategory: "tiện ích",
 	usages: "[Location]",
 	cooldowns: 5,
@@ -39,8 +39,8 @@ module.exports.run = async ({ api, event, args, getText }) => {
 		if (err) throw err;
 		var weatherData = JSON.parse(body);
 		if (weatherData.cod !== 200) return api.sendMessage(getText("locationNotExist", city), threadID, messageID);
-		var sunrise_date = moment.unix(weatherData.sys.sunrise).tz("Asia/Ho_Chi_Minh");
-		var sunset_date = moment.unix(weatherData.sys.sunset).tz("Asia/Ho_Chi_Minh");
+		var sunrise_date = moment.unix(weatherData.sys.sunrise).tz("Asia/Kolkata");
+		var sunset_date = moment.unix(weatherData.sys.sunset).tz("Asia/Kolkata");
 		api.sendMessage({
 			body: getText("returnResult", weatherData.main.temp, weatherData.main.feels_like, weatherData.weather[0].description, weatherData.main.humidity, weatherData.wind.speed, sunrise_date.format('HH:mm:ss'), sunset_date.format('HH:mm:ss')),
 			location: {
