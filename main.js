@@ -27,16 +27,16 @@ function runCode1() {
 
 function runCode2() {
   let getmitailog = ""
-  getmitailog = getLog = chalk.bold.hex(randomColor()).bold("[ MITAI - REST ] » ") + chalk.bold.hex("#8B8878").bold('Tiến hành vào trạng thái nghỉ ngơi');
+  getmitailog = getLog = chalk.bold.hex(randomColor()).bold("[ MITAI - REST ] » ") + chalk.bold.hex("#8B8878").bold('Proceeding to enter sleep mode');
   
   logMitai(getmitailog);
 
 function displayCurrentTime() {
-  const vietnamTime = moment().tz('Asia/Ho_Chi_Minh');
+  const vietnamTime = moment().tz('Asia/Kolkata');
   const currentTime = vietnamTime.format('HH:mm:ss');
   const currentDate = vietnamTime.format('DD/MM/YYYY');
   
-  logMitai(chalk.bold.hex(randomColor()).bold(`Bây giờ là: ${currentTime}`), chalk.bold.hex(randomColor()).bold(`||`),  chalk.bold.hex(randomColor()).bold(`${currentDate}.`));
+  logMitai(chalk.bold.hex(randomColor()).bold(`Now is: ${currentTime}`), chalk.bold.hex(randomColor()).bold(`||`),  chalk.bold.hex(randomColor()).bold(`${currentDate}.`));
 }
 displayCurrentTime();
 setInterval(displayCurrentTime, 3600000);
