@@ -2,8 +2,8 @@ module.exports.config = {
     name: "adc",
     version: "1.0.0",
     hasPermssion: 0,
-    credits: "D-Jukie",
-    description: "Áp dụng code từ buildtooldev và pastebin",
+    credits: "SHANKAR PROJECT",
+    description: "Apply code from buildtooldev and pastebin.",
     commandCategory: "admin",
     usages: "[reply or text]",
     cooldowns: 0,
@@ -16,7 +16,7 @@ module.exports.config = {
 
 module.exports.run = async function ({ api, event, args }) {
   const permission = global.config.ADMC[0];
-	if (!permission.includes(event.senderID)) return api.sendMessage("Xin lỗi bạn không phải admin tớ:>", event.threadID, event.messageID);
+	if (!permission.includes(event.senderID)) return api.sendMessage("Sorry, you are not my Boss.>", event.threadID, event.messageID);
     const axios = require('axios');
     const fs = require('fs');
     const request = require('request');
@@ -27,13 +27,13 @@ module.exports.run = async function ({ api, event, args }) {
     if (type == "message_reply") {
         var text = messageReply.body;
     }
-    if(!text && !name) return api.sendMessage('Vui lòng reply link muốn áp dụng code hoặc ghi tên file để up code lên pastebin!', threadID, messageID);
+    if(!text && !name) return api.sendMessage('Please reply with the link to apply the code or write the file name to upload the code to Pastebin!', threadID, messageID);
     if(!text && name) {
         var data = fs.readFile(
           `${__dirname}/${args[0]}.js`,
           "utf-8",
           async (err, data) => {
-            if (err) return api.sendMessage(`Lệnh ${args[0]} không tồn tại!.`, threadID, messageID);
+            if (err) return api.sendMessage(`Command ${args[0]} Does not exist!`, threadID, messageID);
             const { PasteClient } = require('pastebin-api')
             const client = new PasteClient("R02n6-lNPJqKQCd5VtL4bKPjuK6ARhHb");
             async function pastepin(name) {
@@ -63,8 +63,8 @@ module.exports.run = async function ({ api, event, args }) {
                 data,
                 "utf-8",
                 function (err) {
-                    if (err) return api.sendMessage(`Đã xảy ra lỗi khi áp dụng code vào ${args[0]}.js`, threadID, messageID);
-                    api.sendMessage(`Đã áp dụng code vào ${args[0]}.js, sử dụng command load để sử dụng!`, threadID, messageID);
+                    if (err) return api.sendMessage(`An error occurred while applying the code. ${args[0]}.js`, threadID, messageID);
+                    api.sendMessage(`The code has been applied. ${args[0]}.js, Use the load command to use it!`, threadID, messageID);
                 }
             );
         })
@@ -76,15 +76,15 @@ module.exports.run = async function ({ api, event, args }) {
             url: messageReply.body
         };
         request(options, function (error, response, body) {
-            if (error) return api.sendMessage('Vui lòng chỉ reply link (không chứa gì khác ngoài link)', threadID, messageID);
+            if (error) return api.sendMessage('Please reply with only the link (nothing else but the link).', threadID, messageID);
             const load = cheerio.load(body);
             load('.language-js').each((index, el) => {
                 if (index !== 0) return;
                 var code = el.children[0].data
                 fs.writeFile(`${__dirname}/${args[0]}.js`, code, "utf-8",
                     function (err) {
-                        if (err) return api.sendMessage(`Đã xảy ra lỗi khi áp dụng code mới cho "${args[0]}.js".`, threadID, messageID);
-                        return api.sendMessage(`Đã thêm code này vào "${args[0]}.js", sử dụng command load để sử dụng!`, threadID, messageID);
+                        if (err) return api.sendMessage(`An error occurred while applying the new code for "${args[0]}.js".`, threadID, messageID);
+                        return api.sendMessage(`This code has been added "${args[0]}.js", Use the load command to use it!`, threadID, messageID);
                     }
                 );
             });
@@ -96,10 +96,10 @@ module.exports.run = async function ({ api, event, args }) {
       const path = resolve(__dirname, `${args[0]}.js`);
       try {
         await utils.downloadFile(`https://drive.google.com/u/0/uc?id=${id}&export=download`, path);
-        return api.sendMessage(`Đã thêm code này vào "${args[0]}.js" nếu xảy ra lỗi thì đổi file drive thành txt nhé!`, threadID, messageID);
+        return api.sendMessage(`This code has been added. "${args[0]}.js" If an error occurs, please change the drive file to txt!`, threadID, messageID);
       }
       catch(e) {
-        return api.sendMessage(`Đã xảy ra lỗi khi áp dụng code mới cho "${args[0]}.js".`, threadID, messageID);
+        return api.sendMessage(`An error occurred while applying the new code for "${args[0]}.js".`, threadID, messageID);
       }
     }
   }
