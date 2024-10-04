@@ -18,23 +18,23 @@ global.client = new Object({
     getTime: function(option) {
         switch (option) {
             case 'seconds':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('ss')}`
+                return `${moment.tz('Asia/Kolkata').format('ss')}`
             case 'minutes':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('mm')}`
+                return `${moment.tz('Asia/Kolkata').format('mm')}`
             case 'hours':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('HH')}`
+                return `${moment.tz('Asia/Kolkata').format('HH')}`
             case 'date':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('DD')}`
+                return `${moment.tz('Asia/Kolkata').format('DD')}`
             case 'month':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('MM')}`
+                return `${moment.tz('Asia/Kolkata').format('MM')}`
             case 'year':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('YYYY')}`
+                return `${moment.tz('Asia/Kolkata').format('YYYY')}`
             case 'fullHour':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('HH:mm:ss')}`
+                return `${moment.tz('Asia/Kolkata').format('HH:mm:ss')}`
             case 'fullYear':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('DD/MM/YYYY')}`
+                return `${moment.tz('Asia/Kolkata').format('DD/MM/YYYY')}`
             case 'fullTime':
-                return `${moment.tz('Asia/Ho_Chi_minh').format('HH:mm:ss DD/MM/YYYY')}`
+                return `${moment.tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}`
         }
     },
 })
