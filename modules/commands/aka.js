@@ -1,10 +1,10 @@
 module.exports.config = {
 	name: "Aka",
 	version: "1.0.3",
-	hasPermssion: 0,
-	credits: "Dtai",
-	description: "Thêm Aka cho gr",
-	commandCategory: "tiện ích",
+	hasPermission: 0,
+	credits: "SHANKAR PROJECT",
+	description: "Add Aka to the group",
+	commandCategory: "utility",
 	usages: "[add/remove/all] [content/ID]",
 	cooldowns: 5,
 	dependencies: {
@@ -20,7 +20,7 @@ module.exports.onLoad = () => {
     if (!existsSync(pathData)) return writeFileSync(pathData, "[]", "utf-8"); 
 }
 
-module.exports.run = ({ event, api, args, permssion }) => {
+module.exports.run = ({ event, api, args, permission }) => {
     const { threadID, messageID } = event;
     const { readFileSync, writeFileSync } = global.nodemodule["fs-extra"];
     const { join } = global.nodemodule["path"];
@@ -32,8 +32,8 @@ module.exports.run = ({ event, api, args, permssion }) => {
 
     switch (args[0]) {
         case "add": {
-            if (permssion == 0) return api.sendMessage("[AKA]-Bạn không đủ quyền hạn để thêm Aka nhóm!", threadID, messageID);
-            if (content.length == 0) return api.sendMessage("[AKA]-Phần nhập Aka không được để trống,vui lòng nhập Aka nhóm!", threadID, messageID);
+            if (permission == 0) return api.sendMessage("[AKA]-You do not have enough permissions to add Aka to the group!", threadID, messageID);
+            if (content.length == 0) return api.sendMessage("[AKA]-The Aka input cannot be empty, please enter the group's Aka!", threadID, messageID);
             if (content.indexOf("\n") != -1) {
                 const contentSplit = content.split("\n");
                 for (const item of contentSplit) thisThread.listRule.push(item);
@@ -42,14 +42,14 @@ module.exports.run = ({ event, api, args, permssion }) => {
                 thisThread.listRule.push(content);
             }
             writeFileSync(pathData, JSON.stringify(dataJson, null, 4), "utf-8");
-            api.sendMessage('[AKA]-Thành công,đã thêm Aka nhóm!', threadID, messageID);
+            api.sendMessage('[AKA]-Successfully added Aka to the group!', threadID, messageID);
             break;
         }
         case "list":
-        case"all": {
+        case "all": {
             var msg = "", index = 0;
           for (const item of thisThread.listRule) msg += `${index+=1}• ${item}\n`;
-            if (msg.length == 0) return api.sendMessage("[AKA]-Nhóm của bạn chưa cho có Aka nhóm!", threadID, messageID);
+            if (msg.length == 0) return api.sendMessage("[AKA]-Your group does not have any Aka yet!", threadID, messageID);
             api.sendMessage(`${msg}`, threadID, messageID);
             break;
         }
@@ -57,17 +57,17 @@ module.exports.run = ({ event, api, args, permssion }) => {
         case "remove":
         case "delete": {
             if (!isNaN(content) && content > 0) {
-                if (permssion == 0) return api.sendMessage("[AKA]-Bạn không đủ quyền hạn để xoá Aka nhóm vui lòng nhờ Quản Trị Viên Hoặc Admin Bot!", threadID, messageID);
-                if (thisThread.listRule.length == 0) return api.sendMessage("[AKA]-Nhóm của bạn chưa có Aka để xoá!", threadID, messageID);
+                if (permission == 0) return api.sendMessage("[AKA]-You do not have enough permissions to delete Aka from the group, please ask an Admin or Group Admin!", threadID, messageID);
+                if (thisThread.listRule.length == 0) return api.sendMessage("[AKA]-Your group does not have any Aka to delete!", threadID, messageID);
                 thisThread.listRule.splice(content - 1, 1);
-                api.sendMessage(`[AKA] Đã xoá thành công Aka ${content}`, threadID, messageID);
+                api.sendMessage(`[AKA] Successfully deleted Aka ${content}`, threadID, messageID);
                 break;
             }
             else if (content == "all") {
-                if (permssion == 0) return api.sendMessage("[AKA] Bạn không đủ quyền hạn để có thể sử dụng xóa luật!", threadID, messageID);
-                if (thisThread.listRule.length == 0) return api.sendMessage("[AKA]-Bạn không đủ quyền hạn để xoá Aka nhóm vui lòng nhờ Quản Trị Viên Hoặc Admin Bot!", threadID, messageID);
+                if (permission == 0) return api.sendMessage("[AKA] You do not have enough permissions to use the delete command!", threadID, messageID);
+                if (thisThread.listRule.length == 0) return api.sendMessage("[AKA]-Your group does not have any Aka to delete!", threadID, messageID);
                 thisThread.listRule = [];
-                api.sendMessage(`[AKA]-Nhóm của bạn chưa có Aka để xoá!`, threadID, messageID);
+                api.sendMessage(`[AKA]-Your group does not have any Aka to delete!`, threadID, messageID);
                 break;
             }
         }
