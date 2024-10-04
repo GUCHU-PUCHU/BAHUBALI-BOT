@@ -32,6 +32,7 @@
         "extract-zip": "",
         "fast-speedtest-api": "^0.3.2",
         "fs-extra": "^11.2.0",
+        "fca-disme": "git+https://github.com/dongdev06/fca-disme.git",
         "geoip-lite": "^1.4.7",
         "gifencoder": "^2.0.1",
         "gradient-string": "^2.0.2",
