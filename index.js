@@ -187,7 +187,7 @@ var dtai = mau[Math.floor(Math.random() * mau.length)];
 function startBot(message) {
     (message) ? logger(message, "[ Start ]") : "";
 
-    const child = spawn("node", ["SHANKAR"], {
+    const child = spawn("node", ["mitai"], {
   cwd: __dirname ,
   stdio: "inherit",
   shell: true
