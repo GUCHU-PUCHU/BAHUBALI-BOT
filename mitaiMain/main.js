@@ -22,7 +22,7 @@ function servertime() {
     });
 }
 
-console.log(chalk.bold.hex(randomColor()).bold("[ SERVER - START ] » ") + chalk.bold.hex(randomColor()).bold("Đã bật thành công autostart"));
+console.log(chalk.bold.hex(randomColor()).bold("[ SERVER - START ] » ") + chalk.bold.hex(randomColor()).bold("Autostart enabled successfully"));
 
 setTimeout(() => {
 
