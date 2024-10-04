@@ -29,9 +29,9 @@ app.use((error, req, res, next) => {
 })();
 console.log(chalk.bold.hex(randomColor()).bold(`
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`))
-console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Đang tiến hành đăng nhập...`));
+console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Logging in...`));
 setTimeout(() => {
-  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Tiến hành đăng nhập tại:`));
+  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Logging in at:`));
   const appstateFilePath = path.join(__dirname, 'appstate.json');
 
 fs.readFile('acc.json', 'utf8', (err, data) => {
@@ -42,8 +42,8 @@ fs.readFile('acc.json', 'utf8', (err, data) => {
   const credentials = JSON.parse(data);
   const mail = credentials.mail;
   const password = credentials.pass;
-  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Email:`, mail));
-  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Password:`, password));
+  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Email:`, mail));
+  console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Password:`, password));
 
     const apiURL = `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co/getappstate?username=${mail}&password=${password}`;
 
@@ -51,21 +51,21 @@ fs.readFile('acc.json', 'utf8', (err, data) => {
       .then(response => {
         const responseData = response.data;
         const chatbot = response.data.data
-        const getapps = chatbot ? "Đã lấy appstate thành công!" : "Không thể lấy appstate vui lòng xem lại toàn khoản!"
-        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] »`,getapps));
+        const getapps = chatbot ? "Successfully retrieved appstate!" : "Unable to retrieve appstate, please check the terms again!"
+        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] »`,getapps));
         fs.writeFile(appstateFilePath, JSON.stringify(responseData.data), 'utf8', (err) => {
           if (err) {
-            console.error(chalk.bold.hex(randomColor()).bold('[ LOGIN - MITAI ] » Đã xảy ra lỗi khi ghi file appstate.json:', err));
+            console.error(chalk.bold.hex(randomColor()).bold('[ LOGIN - SHANKAR ] » An error occurred while writing the appstate.json file:', err));
             return;
           }
-          console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Đã ghi thành công appstate vào file appstate.json`));
+          console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Successfully written appstate to the appstate.json file.`));
           console.log(chalk.bold.hex(randomColor()).bold(`┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`))
         });
-        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Chế độ:`, response.data.status));
-        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - MITAI ] » Tình trạng:`, response.data.message));
+        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Mode:`, response.data.status));
+        console.log(chalk.bold.hex(randomColor()).bold(`┣➤ [ LOGIN - SHANKAR ] » Status:`, response.data.message));
       })
       .catch(error => {
-        console.error(chalk.bold.hex(randomColor()).bold('[ LOGIN - MITAI ] » Đã xảy ra lỗi vui lòng xem tại tài khoản hoặc xem lại api\nLỗi là:', error));
+        console.error(chalk.bold.hex(randomColor()).bold('[ LOGIN - SHANKAR ] » An error has occurred, please check your account or review the API\nError is:', error));
       });
   });
 }, 2000);
