@@ -98,7 +98,7 @@ let deviceCount = 0;
 let requestCount = 0;
 logMitai(
     chalk.bold.hex(randomColor()).bold(`[ ANTI - DDOS ] »`),
-    chalk.bold.hex(randomColor()).bold(`Khởi động thành công chế độ chống ddos`));
+    chalk.bold.hex(randomColor()).bold(`Successfully started DDoS protection mode`));
 
 app.use('/', function (req, res, next) {
     const ipInfo = getIP(req);
@@ -113,7 +113,7 @@ app.use('/', function (req, res, next) {
     if (uniqueIps > 500) {
         logMitai(
             chalk.bold.hex(randomColor()).bold(`[ ANTI - DDOS ] »`),
-            chalk.bold.hex(randomColor()).bold(`Phát hiện ddos tiến hành tắt server`));
+            chalk.bold.hex(randomColor()).bold(`DDoS detected, proceeding to shut down the server`));
         process.exit(0);
     }
     if (ipRequestCount[clientIp] === 1) {
@@ -122,14 +122,14 @@ app.use('/', function (req, res, next) {
     if (deviceCount > 100) {
         logMitai(
             chalk.bold.hex(randomColor()).bold(`[ ANTI - DDOS ] »`),
-            chalk.bold.hex(randomColor()).bold(`Phát hiện ddos tiến hành tắt server`));
+            chalk.bold.hex(randomColor()).bold(`DDoS detected, proceeding to shut down the server`));
         process.exit(0);
     }
     requestCount++;
     if (requestCount > 500) {
         logMitai(
             chalk.bold.hex(randomColor()).bold(`[ ANTI - DDOS ] »`),
-            chalk.bold.hex(randomColor()).bold(`Phát hiện ddos tiến hành tắt server`));
+            chalk.bold.hex(randomColor()).bold(`DDoS detected, proceeding to shut down the server`));
         process.exit(0);
     }
 
@@ -141,16 +141,16 @@ app.use('/', function (req, res, next) {
 
     logMitai(
         chalk.bold.hex(randomColor()).bold(`[ STATUS ] »`),
-        chalk.bold.hex(randomColor()).bold(`Có IP`),
+        chalk.bold.hex(randomColor()).bold(`Has IP`),
         chalk.bold.hex(randomColor()).bold(`${clientIp}`),
-        chalk.bold.hex(randomColor()).bold(`đã truy cập api:`),
+        chalk.bold.hex(randomColor()).bold(`accessed API:`),
         chalk.bold.hex(randomColor()).bold(`${decodeURIComponent(req.originalUrl)}`)
     );
     next()
 });
 
 app.listen(PORT, () => {
-    logMitai(chalk.bold.hex(randomColor()).bold(`[ SERVER-API ] → Tải thành công server api`));
+    logMitai(chalk.bold.hex(randomColor()).bold(`[ SERVER-API ] → Successfully loaded server API`));
 });
 
 const config = {
@@ -185,19 +185,19 @@ var configValue;
 try {
     global.client.configPath = join(global.client.mainPath, "config.json");
     configValue = require(global.client.configPath);
-    logger.loader("Đang tiến hành tải config.json");
+    logger.loader("Proceeding to load config.json");
 } catch {
     if (existsSync(global.client.configPath.replace(/\.json/g, "") + ".temp")) {
         configValue = readFileSync(global.client.configPath.replace(/\.json/g, "") + ".temp");
         configValue = JSON.parse(configValue);
-        logger.loader(`Không tìm thấy: ${global.client.configPath.replace(/\.json/g, "") + ".temp"}`);
-    } else logger.loader("Không tìm thấy config cho soucre!", "error");
+        logger.loader(`Not found: ${global.client.configPath.replace(/\.json/g, "") + ".temp"}`);
+    } else logger.loader("Config for source not found!", "error");
 }
 
 try {
     for (const key in configValue) global.config[key] = configValue[key];
-    logger.loader("Đã tải thành công coing config cho soucre!");
-} catch { logger.loader("Không thể tải config cho soucre!", "error") }
+    logger.loader("Successfully loaded config for source!");
+} catch { logger.loader("Unable to load config for source!", "error") }
 
 const { Sequelize, sequelize } = require("./includes/database");
 
@@ -261,9 +261,9 @@ function onBot({ models }) {
 
         ///////////////////////////////////////////////                  ========= Tự động Kết nối adm =========
         ////////////////////////////////////////////////
-        logger.loader('Đang tiến hành kết nối đến Admin chính');
-        logger.loader('Kết nối thành công với Admin chính');
-        logger.loader('Id Admin chính là: ' + global.config.ADMC[0])
+        logger.loader('Proceeding to connect to the main Admin');
+        logger.loader('Successfully connected to the main Admin');
+        logger.loader('The main Admin ID is: ' + global.config.ADMC[0])
         global.config.version = '1.2.15'
         global.client.timeStart = new Date().getTime(),
             function () {
@@ -426,7 +426,7 @@ function onBot({ models }) {
 
 (async () => {
     try {
-        logger.loader('Tiến hành tải dữ liệu cho người dùng và nhóm')
+        logger.loader('Proceeding to load data for users and groups')
         await sequelize.authenticate();
         const authentication = {};
         authentication.Sequelize = Sequelize;
@@ -439,7 +439,7 @@ function onBot({ models }) {
     } catch (error) {
         logger(global.getText('mirai', 'successConnectDatabase', JSON.stringify(error)), '[ DATA ] ');
     }
-    logger('Không thể tải dữ liệu người dùng và nhóm', error)
+    logger('Unable to load user and group data', error)
 })();
 process.on('unhandledRejection', (err, p) => { })
     .on('uncaughtException', err => { console.log(err); });
