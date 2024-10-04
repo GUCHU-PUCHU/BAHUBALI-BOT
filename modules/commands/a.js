@@ -1,15 +1,16 @@
 const os = require('os');
 const moment = require('moment-timezone');
 const fs = require('fs').promises;
-const { exec } = require('child_process');
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 
 module.exports.config = {
   name: "uptime",
   version: "2.0.0",
   hasPermission: 0,
-  credits: "Vtuan dtai fix mod",
-  description: "Hiển thị thông tin hệ thống của bot",
-  commandCategory: "Hệ Thống",
+  credits: "SHANKAR PROJECT",
+  description: "Displays system information of the bot",
+  commandCategory: "System",
   usages: "",
   cooldowns: 5
 };
@@ -22,38 +23,38 @@ async function getDependencyCount() {
     const devDepCount = Object.keys(packageJson.devDependencies || {}).length;
     return { depCount, devDepCount };
   } catch (error) {
-    console.error('Không thể đọc file package.json:', error);
+    console.error('Unable to read package.json file:', error);
     return { depCount: -1, devDepCount: -1 };
   }
 }
 
-async function checkpack() {
+async function checkPackages() {
   try {
-    const npmListCommand = 'npm list --depth=0 --json=true';
-    const { stdout } = await exec(npmListCommand);
+    const { stdout } = await exec('npm list --depth=0 --json=true');
     const npmPackages = JSON.parse(stdout);
     const livePackages = Object.keys(npmPackages.dependencies || {});
+    // Change the logic here if needed to correctly identify dead packages
     const deadPackages = Object.keys(npmPackages._requiredBy || {});
     return { livePackages, deadPackages };
   } catch (error) {
-    console.error('Lỗi khi kiểm tra các gói npm:', error);
+    console.error('Error checking npm packages:', error);
     return { livePackages: [], deadPackages: [] };
   }
 }
 
 function getStatusByPing(ping) {
   if (ping < 0) {
-    return 'Không xác định';
+    return 'Unknown';
   } else if (ping < 50) {
-    return 'Rất tốt';
+    return 'Excellent';
   } else if (ping < 100) {
-    return 'Tốt';
+    return 'Good';
   } else if (ping < 200) {
-    return 'Chấp nhận được';
+    return 'Acceptable';
   } else if (ping < 500) {
-    return 'Độ trễ cao';
+    return 'High latency';
   } else {
-    return 'Độ trễ rất cao';
+    return 'Very high latency';
   }
 }
 
@@ -75,12 +76,13 @@ module.exports.run = async ({ api, event, Threads, Users }) => {
   const usedMemory = totalMemory - freeMemory;
   const uptime = process.uptime();
 
-  const { depCount, devDepCount } = await getDependencyCount();
+  const [dependencyCounts, npmCheck] = await Promise.all([getDependencyCount(), checkPackages()]);
+  const { depCount, devDepCount } = dependencyCounts;
+  const { livePackages, deadPackages } = npmCheck;
+  
   let name = await Users.getNameUser(event.senderID);
   const primaryIp = getPrimaryIP();
   const botStatus = getStatusByPing(Date.now() - event.timestamp);
-
-  const { livePackages, deadPackages } = await checkpack();
 
   const nguyen = Math.floor(uptime / (60 * 60));
   const duc = Math.floor((uptime % (60 * 60)) / 60);
@@ -88,19 +90,18 @@ module.exports.run = async ({ api, event, Threads, Users }) => {
 
   const uptimeString = `${nguyen.toString().padStart(2, '0')}: ${duc.toString().padStart(2, '0')}: ${tai.toString().padStart(2, '0')}`;
   const dtai = `
-    Hiện giờ là: ${moment().tz('Asia/Ho_Chi_Minh').format('HH:mm:ss')} || ${moment().tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
-    Bot đã online được: ${uptimeString}
-    Địa chỉ IP: ${primaryIp}
-    Tổng số package sống: ${depCount}
-    Tống số package chết: ${devDepCount}
-    Tổng số package npm sống: ${livePackages.length}
-    Tổng số package npm chết: ${deadPackages.length > 0 ? deadPackages.length : '0'}
-    Danh sách package chết: ${deadPackages.length > 0 ? deadPackages.join(', ') : 'Không có'}
-    Tình trạng bot: ${botStatus}
+    Current time: ${moment().tz('Asia/Kolkata').format('HH:mm:ss')} || ${moment().tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
+    Bot has been online for: ${uptimeString}
+    IP Address: ${primaryIp}
+    Total live packages: ${depCount}
+    Total dead packages: ${devDepCount}
+    Total live npm packages: ${livePackages.length}
+    Total dead npm packages: ${deadPackages.length > 0 ? deadPackages.length : '0'}
+    List of dead packages: ${deadPackages.length > 0 ? deadPackages.join(', ') : 'None'}
+    Bot status: ${botStatus}
     Ping: ${Date.now() - event.timestamp}ms
-    Yêu cầu bởi: ${name}
+    Requested by: ${name}
   `.trim();
 
   api.sendMessage(dtai, event.threadID, event.messageID);
 };
-
